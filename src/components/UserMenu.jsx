@@ -3,6 +3,18 @@ import React, { useState, useEffect } from 'react';
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 480);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   useEffect(() => {
     const userData = localStorage.getItem('googleUser');
@@ -34,8 +46,8 @@ const UserMenu = () => {
       <button 
         onClick={toggleMenu} 
         style={{
-          width: window.innerWidth <= 480 ? '32px' : '40px',
-          height: window.innerWidth <= 480 ? '32px' : '40px',
+          width: isMobile ? '32px' : '40px',
+          height: isMobile ? '32px' : '40px',
           borderRadius: '50%',
           border: '2px solid rgba(255, 255, 255, 0.3)',
           backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -93,14 +105,14 @@ const UserMenu = () => {
       {isOpen && (
         <div style={{
           position: 'absolute',
-          top: window.innerWidth <= 480 ? '45px' : '50px',
-          right: window.innerWidth <= 480 ? '-10px' : '0',
+          top: isMobile ? '45px' : '50px',
+          right: isMobile ? '-10px' : '0',
           backgroundColor: 'white',
           borderRadius: '12px',
           boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
           padding: '16px',
-          minWidth: window.innerWidth <= 480 ? '200px' : '250px',
-          maxWidth: window.innerWidth <= 480 ? 'calc(100vw - 40px)' : 'none',
+          minWidth: isMobile ? '200px' : '250px',
+          maxWidth: isMobile ? 'calc(100vw - 40px)' : 'none',
           zIndex: 1000,
           border: '1px solid rgba(0, 0, 0, 0.1)'
         }}>
@@ -147,13 +159,13 @@ const UserMenu = () => {
           </div>
           <button onClick={handleLogout} style={{
             width: '100%',
-            padding: window.innerWidth <= 480 ? '10px 16px' : '12px 20px',
+            padding: isMobile ? '10px 16px' : '12px 20px',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
             color: 'white',
             border: 'none',
             borderRadius: '12px',
             cursor: 'pointer',
-            fontSize: window.innerWidth <= 480 ? '13px' : '14px',
+            fontSize: isMobile ? '13px' : '14px',
             fontWeight: '600',
             letterSpacing: '0.5px',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -170,7 +182,7 @@ const UserMenu = () => {
             e.target.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
           }}>
             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-              <svg width={window.innerWidth <= 480 ? "14" : "16"} height={window.innerWidth <= 480 ? "14" : "16"} viewBox="0 0 24 24" fill="currentColor">
+              <svg width={isMobile ? "14" : "16"} height={isMobile ? "14" : "16"} viewBox="0 0 24 24" fill="currentColor">
                 <path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2z"/>
               </svg>
               Cerrar sesión
