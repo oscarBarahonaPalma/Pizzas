@@ -1120,7 +1120,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 @media (min-width: 1024px) {
   .pizza-card .pizza-image img[style*="scale(0.6)"] {
     transform: scale(0.55) !important;
-    object-position: center 60% !important;
+    object-position: center center !important;
   }
 }
 
@@ -1128,7 +1128,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 @media (min-width: 1440px) {
   .pizza-card .pizza-image img[style*="scale(0.6)"] {
     transform: scale(0.5) !important;
-    object-position: center 55% !important;
+    object-position: center center !important;
   }
 }
 
