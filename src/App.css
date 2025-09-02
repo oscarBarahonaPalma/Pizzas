@@ -2069,3 +2069,17 @@ body.theme-light .drinks-grid .drink-item h3,
 body.theme-light .drinks-grid .drink-item p {
   color: #2b2b2b !important;
 }
+
+
+/* Ensure identical widths on small screens */
+@media (max-width: 640px) {
+  .pizzas-grid,
+  .drinks-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pizza-card,
+  .drink-item {
+    max-width: 100% !important;
+  }
+}
+
