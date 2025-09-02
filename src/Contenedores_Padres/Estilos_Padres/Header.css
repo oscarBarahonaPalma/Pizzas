@@ -10,7 +10,7 @@
   top: 0;
   z-index: 1000;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 0 2rem;
 }
@@ -19,6 +19,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  padding-top: 8px;
 }
 
 .header-logo {
@@ -86,6 +87,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  padding-top: 8px;
 }
 
 /* Botón de Contacto - Estilo elegante y delgado */
@@ -237,6 +239,7 @@
     padding: 0 1rem;
     height: 55px;
     justify-content: space-between; /* Mantener espacio entre elementos */
+    align-items: flex-start;
   }
   
   .pizzas-title {
@@ -268,7 +271,7 @@
     padding: 0.4rem 0.6rem;
     height: 55px; /* Aumentar altura para que quepan los botones */
     justify-content: flex-end; /* Mover botones hacia la derecha */
-    align-items: center;
+    align-items: flex-start;
     overflow: hidden; /* Evitar que se salgan los elementos */
   }
   
