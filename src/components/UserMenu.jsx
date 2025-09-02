@@ -93,13 +93,14 @@ const UserMenu = () => {
       {isOpen && (
         <div style={{
           position: 'absolute',
-          top: '50px',
-          right: '0',
+          top: window.innerWidth <= 480 ? '45px' : '50px',
+          right: window.innerWidth <= 480 ? '-10px' : '0',
           backgroundColor: 'white',
           borderRadius: '12px',
           boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
           padding: '16px',
-          minWidth: '250px',
+          minWidth: window.innerWidth <= 480 ? '200px' : '250px',
+          maxWidth: window.innerWidth <= 480 ? 'calc(100vw - 40px)' : 'none',
           zIndex: 1000,
           border: '1px solid rgba(0, 0, 0, 0.1)'
         }}>
@@ -146,13 +147,13 @@ const UserMenu = () => {
           </div>
           <button onClick={handleLogout} style={{
             width: '100%',
-            padding: '12px 20px',
+            padding: window.innerWidth <= 480 ? '10px 16px' : '12px 20px',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
             color: 'white',
             border: 'none',
             borderRadius: '12px',
             cursor: 'pointer',
-            fontSize: '14px',
+            fontSize: window.innerWidth <= 480 ? '13px' : '14px',
             fontWeight: '600',
             letterSpacing: '0.5px',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -169,7 +170,7 @@ const UserMenu = () => {
             e.target.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
           }}>
             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <svg width={window.innerWidth <= 480 ? "14" : "16"} height={window.innerWidth <= 480 ? "14" : "16"} viewBox="0 0 24 24" fill="currentColor">
                 <path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2z"/>
               </svg>
               Cerrar sesión
