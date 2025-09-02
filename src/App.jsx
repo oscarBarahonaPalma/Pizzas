@@ -6,9 +6,9 @@ import { CartContext, CartProvider } from './context/CartContext';
 import Header from './Contenedores_Padres/Header';
 import MenuDerecho from './Contenedores_Padres/MenuDerecho';
 
-const PIZZA_ICON = '/ICONOS/pizzas.png?v=4';
-const DRINK_ICON = '/ICONOS/soda.png?v=4';
-const DISCOUNT_ICON = '/ICONOS/descuento.png?v=4';
+const PIZZA_ICON = '/iconos/pizzas.png?v=4';
+const DRINK_ICON = '/iconos/soda.png?v=4';
+const DISCOUNT_ICON = '/iconos/descuento.png?v=4';
 // Usar imágenes desde la carpeta "ICONOS3" para los íconos que caen
 const FALLING_ICONS = [
   '/ICONOS3/img1.png',
