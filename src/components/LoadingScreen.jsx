@@ -260,34 +260,7 @@ const LoadingScreen = ({ children }) => {
     );
   }
 
-  return (
-    <div>
-      {/* Botón de logout en la esquina superior derecha */}
-      <button
-        onClick={handleLogout}
-        style={{
-          position: 'fixed',
-          top: '20px',
-          right: '20px',
-          background: '#ff4444',
-          color: 'white',
-          border: 'none',
-          borderRadius: '8px',
-          padding: '8px 16px',
-          cursor: 'pointer',
-          fontSize: '14px',
-          fontWeight: 'bold',
-          zIndex: 1000,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
-        }}
-        onMouseOver={(e) => e.target.style.background = '#cc3333'}
-        onMouseOut={(e) => e.target.style.background = '#ff4444'}
-      >
-        Cerrar Sesión
-      </button>
-      {children}
-    </div>
-  );
+  return children;
 };
 
 export default LoadingScreen;
