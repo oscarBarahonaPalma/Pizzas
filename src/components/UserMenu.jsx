@@ -31,41 +31,61 @@ const UserMenu = () => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <button onClick={toggleMenu} style={{
-        width: '40px',
-        height: '40px',
-        borderRadius: '50%',
-        border: '2px solid rgba(255, 255, 255, 0.3)',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        cursor: 'pointer',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '4px',
-        transition: 'all 0.3s ease'
-      }}>
-        <div style={{
-          width: '18px',
-          height: '2px',
-          backgroundColor: 'white',
-          borderRadius: '1px',
-          transition: 'all 0.3s ease'
-        }}></div>
-        <div style={{
-          width: '18px',
-          height: '2px',
-          backgroundColor: 'white',
-          borderRadius: '1px',
-          transition: 'all 0.3s ease'
-        }}></div>
-        <div style={{
-          width: '18px',
-          height: '2px',
-          backgroundColor: 'white',
-          borderRadius: '1px',
-          transition: 'all 0.3s ease'
-        }}></div>
+      <button 
+        onClick={toggleMenu} 
+        style={{
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          border: '2px solid rgba(255, 255, 255, 0.3)',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.3s ease',
+          overflow: 'hidden',
+          padding: '0',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.1)';
+          e.target.style.borderColor = 'rgba(255, 255, 255, 0.6)';
+          e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+          e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
+        }}
+      >
+        {userInfo.picture ? (
+          <img 
+            src={userInfo.picture} 
+            alt="Foto de perfil" 
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'cover',
+              borderRadius: '50%'
+            }}
+          />
+        ) : (
+          <div style={{
+            width: '100%',
+            height: '100%',
+            borderRadius: '50%',
+            backgroundColor: '#4a90e2',
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '16px',
+            fontWeight: 'bold'
+          }}>
+            {userInfo.name ? userInfo.name.charAt(0).toUpperCase() : 'U'}
+          </div>
+        )}
       </button>
 
       {isOpen && (
