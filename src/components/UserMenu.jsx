@@ -7,7 +7,9 @@ const UserMenu = () => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 480);
+      const mobile = window.innerWidth <= 768;
+      console.log('Screen size check - width:', window.innerWidth, 'isMobile:', mobile);
+      setIsMobile(mobile);
     };
     
     checkScreenSize();
