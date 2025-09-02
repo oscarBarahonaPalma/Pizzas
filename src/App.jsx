@@ -210,6 +210,7 @@ function DrinkItem({ product }) {
 }
 
 function Bebidas() {
+  // Lista de bebidas disponibles
   const drinks = [
     { id: 'fanta', name: 'Fanta', title: 'Fanta', description: 'Refresco de naranja bien frío', price: 2.5, imageSrc: '/img-Bebidas/fanta.png', imageAlt: 'Fanta' },
     { id: 'manzanita', name: 'Manzanita', title: 'Manzanita', description: 'Sabor manzana para todo momento', price: 2.5, imageSrc: '/img-Bebidas/manzanita.png', imageAlt: 'Manzanita' },
