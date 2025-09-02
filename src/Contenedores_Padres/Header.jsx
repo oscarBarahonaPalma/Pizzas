@@ -26,22 +26,7 @@ function Header() {
     <div className='Header'>
 
       
-      {(isPizzas || isBebidas || isPostres || isPedidos) && (
-        <div className="header-center">
-          <h2 className="pizzas-title">
-            {isPizzas && 'Pizzas'}
-            {isBebidas && '🥤 Bebidas'}
-            {isPostres && '🎁 Promociones y paquetes'}
-            {isPedidos && '📦 Mis Pedidos'}
-          </h2>
-          <span className="pizzas-subtitle">
-            {isPizzas && 'Elige tu favorita, recién salida del horno'}
-            {isBebidas && 'Refrescos para acompañar tu pizza'}
-            {isPostres && 'Ofertas y combos especiales'}
-            {isPedidos && 'Historial y estado'}
-          </span>
-        </div>
-      )}
+      {/* Títulos eliminados por solicitud: se remueve el bloque central */}
       
       <div className="header-right">
         <div className="header-actions">
