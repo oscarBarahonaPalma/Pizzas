@@ -307,6 +307,14 @@
   
   /* Ocultar logo en móviles muy pequeños para dar más espacio */
   .header-left {
-    display: none;
+    display: none !important;
+  }
+  
+  .header-logo {
+    display: none !important;
+  }
+  
+  .brand-logo {
+    display: none !important;
   }
 }
