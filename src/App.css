@@ -1550,7 +1550,7 @@ body.theme-light .btn-order,
   }
   
   .page-content {
-    padding: 20px;
+    padding: 15px;
   }
   
   .page-content h1 {
@@ -1581,7 +1581,7 @@ body.theme-light .btn-order,
   }
   
   .page-content {
-    padding: 15px;
+    padding: 10px;
   }
   
   .page-content h1 {
@@ -1802,6 +1802,13 @@ body.theme-light .btn-order,
   .pizzas-grid,
   .drinks-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .pizza-card,
+  .drink-item {
+    width: 100%;
+    max-width: none;
   }
 }
 
