@@ -319,7 +319,19 @@ function Carrito() {
   const navigate = useNavigate();
   return (
     <div className="page-content">
-      <h1>Carrito</h1>
+      <div className="page-title pro">
+        <div className="page-title-left">
+          <span className="page-title-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="9" cy="20" r="1.6" />
+              <circle cx="17" cy="20" r="1.6" />
+              <path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 1.96-1.6L20 8H7" />
+            </svg>
+          </span>
+          <h1 className="page-title-text">Carrito</h1>
+        </div>
+        <div className="page-title-accent" />
+      </div>
       {items.length === 0 ? (
         <p>Tu carrito está vacío.</p>
       ) : (
