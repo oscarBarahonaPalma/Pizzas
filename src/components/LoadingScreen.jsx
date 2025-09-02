@@ -21,6 +21,30 @@ const FALLING_ICONS = [
 const LoadingScreen = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // Verificar si hay datos de autenticación en localStorage al cargar
+  React.useEffect(() => {
+    const checkAuthStatus = () => {
+      const googleUser = localStorage.getItem('googleUser');
+      const googleToken = localStorage.getItem('googleAccessToken');
+      
+      if (googleUser && googleToken) {
+        try {
+          const userData = JSON.parse(googleUser);
+          if (userData && userData.id) {
+            setIsAuthenticated(true);
+          }
+        } catch (error) {
+          console.error('Error al parsear datos de usuario:', error);
+          // Limpiar datos corruptos
+          localStorage.removeItem('googleUser');
+          localStorage.removeItem('googleAccessToken');
+        }
+      }
+    };
+
+    checkAuthStatus();
+  }, []);
+
   const login = useGoogleLogin({
     scope: 'email profile',
     onSuccess: async (credentialResponse) => {
@@ -59,54 +83,25 @@ const LoadingScreen = ({ children }) => {
       // Mostrar mensaje de error más amigable
       alert('Error al iniciar sesión con Google. Por favor, intenta nuevamente.');
     },
-    // Configuración adicional para manejar COOP
-    ux_mode: 'popup',
+    // Usar redirect para evitar problemas de COOP
+    ux_mode: 'redirect',
     redirect_uri: window.location.origin
   });
 
   const handleGoogleLogin = () => {
     try {
-      // Verificar si el navegador soporta popups
-      if (window.screen && window.screen.width < 768) {
-        // En dispositivos móviles, usar redirect en lugar de popup
-        const loginWithRedirect = useGoogleLogin({
-          scope: 'email profile',
-          onSuccess: async (credentialResponse) => {
-            try {
-              if (credentialResponse.access_token) {
-                const response = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
-                  headers: {
-                    'Authorization': `Bearer ${credentialResponse.access_token}`
-                  }
-                });
-                
-                if (response.ok) {
-                  const userInfo = await response.json();
-                  localStorage.setItem('googleUser', JSON.stringify(userInfo));
-                  localStorage.setItem('googleAccessToken', credentialResponse.access_token);
-                  setIsAuthenticated(true);
-                }
-              }
-            } catch (error) {
-              console.error('Error en autenticación móvil:', error);
-            }
-          },
-          onError: (error) => {
-            console.error('Error en login móvil:', error);
-            alert('Error al iniciar sesión. Por favor, intenta nuevamente.');
-          },
-          ux_mode: 'redirect',
-          redirect_uri: window.location.origin
-        });
-        loginWithRedirect();
-      } else {
-        // En desktop, usar popup
-        login();
-      }
+      // Usar siempre redirect para evitar problemas de COOP
+      login();
     } catch (error) {
       console.error('Error al iniciar el proceso de login:', error);
-      alert('Error al iniciar sesión. Por favor, verifica que los popups estén habilitados.');
+      alert('Error al iniciar sesión. Por favor, intenta nuevamente.');
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('googleUser');
+    localStorage.removeItem('googleAccessToken');
+    setIsAuthenticated(false);
   };
 
   if (!isAuthenticated) {
@@ -265,7 +260,34 @@ const LoadingScreen = ({ children }) => {
     );
   }
 
-  return children;
+  return (
+    <div>
+      {/* Botón de logout en la esquina superior derecha */}
+      <button
+        onClick={handleLogout}
+        style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          background: '#ff4444',
+          color: 'white',
+          border: 'none',
+          borderRadius: '8px',
+          padding: '8px 16px',
+          cursor: 'pointer',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          zIndex: 1000,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+        }}
+        onMouseOver={(e) => e.target.style.background = '#cc3333'}
+        onMouseOut={(e) => e.target.style.background = '#ff4444'}
+      >
+        Cerrar Sesión
+      </button>
+      {children}
+    </div>
+  );
 };
 
 export default LoadingScreen;

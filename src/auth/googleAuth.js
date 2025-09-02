@@ -32,6 +32,8 @@ export async function signInWithGoogle() {
         client_id: clientId,
         scope: 'openid email profile',
         prompt: 'select_account',
+        ux_mode: 'redirect',
+        redirect_uri: window.location.origin,
         callback: async (response) => {
           try {
             if (!response || !response.access_token) {
@@ -58,42 +60,7 @@ export async function signInWithGoogle() {
         },
       });
 
-      // Manejar errores de COOP
-      try {
-        tokenClient.requestAccessToken();
-      } catch (coopError) {
-        console.warn('Error de COOP detectado, intentando método alternativo:', coopError);
-        // Fallback: intentar con configuración diferente
-        const fallbackClient = window.google.accounts.oauth2.initTokenClient({
-          client_id: clientId,
-          scope: 'openid email profile',
-          prompt: 'select_account',
-          ux_mode: 'redirect',
-          redirect_uri: window.location.origin,
-          callback: async (response) => {
-            try {
-              if (!response || !response.access_token) {
-                reject(new Error('No se recibió access_token'));
-                return;
-              }
-              const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-                headers: { Authorization: `Bearer ${response.access_token}` },
-              });
-              if (!res.ok) throw new Error('No se pudo obtener el perfil de Google');
-              const profile = await res.json();
-              try {
-                localStorage.setItem('googleAccessToken', response.access_token);
-                localStorage.setItem('googleUser', JSON.stringify(profile));
-              } catch {}
-              resolve({ accessToken: response.access_token, profile });
-            } catch (err) {
-              reject(err);
-            }
-          },
-          error_callback: (err) => reject(err),
-        });
-        fallbackClient.requestAccessToken();
-      }
+      tokenClient.requestAccessToken();
     } catch (err) {
       reject(err);
     }
