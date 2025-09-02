@@ -22,7 +22,10 @@ const UserMenu = () => {
   };
 
   const toggleMenu = () => {
+    console.log('Click en UserMenu - isOpen actual:', isOpen);
+    console.log('Ancho de pantalla:', window.innerWidth);
     setIsOpen(!isOpen);
+    console.log('Nuevo isOpen debería ser:', !isOpen);
   };
 
   if (!userInfo) return null;
@@ -86,7 +89,9 @@ const UserMenu = () => {
         )}
       </button>
 
-      {isOpen && (
+      {isOpen && (() => {
+        console.log('Renderizando menú - isOpen:', isOpen);
+        return (
         <div 
           style={{
             position: 'fixed',
@@ -175,7 +180,8 @@ const UserMenu = () => {
             </span>
           </button>
         </div>
-      )}
+        );
+      })()}
       {isOpen && (
         <div style={{
           position: 'fixed',
