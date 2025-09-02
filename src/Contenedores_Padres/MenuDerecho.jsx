@@ -2,6 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './Estilos_Padres/MenuDerecho.css';
 
+// Iconos minimalistas y profesionales (SVG, trazo actual)
+const IconPizza = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3.2 8.5C8.9 6 15.1 6 20.8 8.5L12 21 3.2 8.5Z"/>
+    <path d="M5.1 9.3C9.5 7.6 14.5 7.6 18.9 9.3" opacity="0.5"/>
+    <circle cx="9.2" cy="12.1" r="1.1"/>
+    <circle cx="14.8" cy="13.2" r="1.1"/>
+    <circle cx="12.1" cy="10.2" r="0.9"/>
+  </svg>
+);
+
+const IconDrink = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M4 4h16"/>
+    <path d="M7 4l1.2 12.5a4 4 0 0 0 3.98 3.5h-0.36a4 4 0 0 0 3.98-3.5L17 4"/>
+    <path d="M10 4l6-2"/>
+    <path d="M8 8h8" opacity="0.6"/>
+  </svg>
+);
+
+const IconTag = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 12l7.5-7.5a2 2 0 0 1 1.4-.6H19a2 2 0 0 1 2 2v7.1a2 2 0 0 1-.6 1.4L12 22 3 12Z"/>
+    <circle cx="16.2" cy="7.8" r="1.4"/>
+  </svg>
+);
+
+const IconOrders = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M4.5 7.5h15v11a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-11Z"/>
+    <path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5"/>
+    <path d="M8 12l2.2 2.2L16 8.5"/>
+  </svg>
+);
+
 const MenuDerecho = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -37,31 +72,28 @@ const MenuDerecho = () => {
     {
       id: 'pizzas',
       label: 'Pizzas',
-      icon: '🍕',
-      iconSrc: '/iconos/pizzas.png?v=4',
+      iconSvg: <IconPizza />,
       description: 'Nuestras especialidades',
       color: '#ff6b6b'
     },
     {
       id: 'bebidas',
       label: 'Bebidas',
-      icon: '🥤',
-      iconSrc: '/iconos/soda.png?v=4',
+      iconSvg: <IconDrink />,
       description: 'Refrescos y más',
       color: '#4ecdc4'
     },
     {
       id: 'postres',
       label: 'Promociones y paquetes',
-      icon: '🏷️',
-      iconSrc: '/iconos/descuento.png?v=4',
+      iconSvg: <IconTag />,
       description: 'Promos y combos',
       color: '#ffe66d'
     },
     {
       id: 'pedidos',
       label: 'Mis Pedidos',
-      icon: '📦',
+      iconSvg: <IconOrders />,
       description: 'Historial y estado',
       color: '#a8e6cf'
     }
@@ -111,21 +143,8 @@ const MenuDerecho = () => {
                     style={{ '--accent-color': item.color }}
                   >
                     <div className="menu-item-content">
-                      <div className="menu-icon-wrapper">
-                        {item.iconSrc ? (
-                          <img 
-                            src={item.iconSrc} 
-                            alt="" 
-                            style={{ width: 24, height: 24 }} 
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                              e.target.nextSibling.style.display = 'inline';
-                            }}
-                          />
-                        ) : null}
-                        <span className="menu-icon" style={{ display: item.iconSrc ? 'none' : 'inline' }}>
-                          {item.icon}
-                        </span>
+                      <div className="menu-icon-wrapper" style={{ color: 'var(--accent-color)' }}>
+                        {item.iconSvg}
                       </div>
                       <div className="menu-text-content">
                         <span className="menu-label">{item.label}</span>
