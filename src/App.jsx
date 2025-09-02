@@ -6,9 +6,9 @@ import { CartContext, CartProvider } from './context/CartContext';
 import Header from './Contenedores_Padres/Header';
 import MenuDerecho from './Contenedores_Padres/MenuDerecho';
 
-const PIZZA_ICON = '/ICONOS/pizzas.png';
-const DRINK_ICON = '/ICONOS/soda.png';
-const DISCOUNT_ICON = '/ICONOS/descuento.png';
+const PIZZA_ICON = '/ICONOS/pizzas.png?v=2';
+const DRINK_ICON = '/ICONOS/soda.png?v=2';
+const DISCOUNT_ICON = '/ICONOS/descuento.png?v=2';
 // Usar imágenes desde la carpeta "ICONOS3" para los íconos que caen
 const FALLING_ICONS = [
   '/ICONOS3/img1.png',
@@ -50,7 +50,19 @@ function PizzaCard({ product }) {
         <div className="price-badge">${product.price.toFixed(2)}</div>
       </div>
       <div className="pizza-info">
-        <h3><img src={PIZZA_ICON} alt="" style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: 8 }} />{product.title}</h3>
+        <h3>
+          <img 
+            src={PIZZA_ICON} 
+            alt="" 
+            style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: 8 }} 
+            onError={(e) => {
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'inline';
+            }}
+          />
+          <span style={{ display: 'none', marginRight: 8 }}>🍕</span>
+          {product.title}
+        </h3>
         <p>{product.description}</p>
         <div className="pizza-details">
           <span className="size">{product.size}</span>
@@ -194,7 +206,19 @@ function DrinkItem({ product }) {
         ) : null}
         <div className="price-badge">${product.price.toFixed(2)}</div>
       </div>
-      <h3><img src={DRINK_ICON} alt="" style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: 8 }} />{product.title}</h3>
+      <h3>
+        <img 
+          src={DRINK_ICON} 
+          alt="" 
+          style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: 8 }} 
+          onError={(e) => {
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'inline';
+          }}
+        />
+        <span style={{ display: 'none', marginRight: 8 }}>🥤</span>
+        {product.title}
+      </h3>
       <p>{product.description}</p>
       <div className="action-row" style={{ marginTop: 8 }}>
         <div className="qty-control">
