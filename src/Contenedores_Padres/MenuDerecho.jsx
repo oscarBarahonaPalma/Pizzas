@@ -38,7 +38,7 @@ const MenuDerecho = () => {
       id: 'pizzas',
       label: 'Pizzas',
       icon: '🍕',
-      iconSrc: '/ICONOS/pizzas.png',
+      iconSrc: '/ICONOS/pizzas.png?v=2',
       description: 'Nuestras especialidades',
       color: '#ff6b6b'
     },
@@ -46,7 +46,7 @@ const MenuDerecho = () => {
       id: 'bebidas',
       label: 'Bebidas',
       icon: '🥤',
-      iconSrc: '/ICONOS/soda.png',
+      iconSrc: '/ICONOS/soda.png?v=2',
       description: 'Refrescos y más',
       color: '#4ecdc4'
     },
@@ -54,7 +54,7 @@ const MenuDerecho = () => {
       id: 'postres',
       label: 'Promociones y paquetes',
       icon: '🏷️',
-      iconSrc: '/ICONOS/descuento.png',
+      iconSrc: '/ICONOS/descuento.png?v=2',
       description: 'Promos y combos',
       color: '#ffe66d'
     },
@@ -113,10 +113,19 @@ const MenuDerecho = () => {
                     <div className="menu-item-content">
                       <div className="menu-icon-wrapper">
                         {item.iconSrc ? (
-                          <img src={item.iconSrc} alt="" style={{ width: 24, height: 24 }} />
-                        ) : (
-                          <span className="menu-icon">{item.icon}</span>
-                        )}
+                          <img 
+                            src={item.iconSrc} 
+                            alt="" 
+                            style={{ width: 24, height: 24 }} 
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.nextSibling.style.display = 'inline';
+                            }}
+                          />
+                        ) : null}
+                        <span className="menu-icon" style={{ display: item.iconSrc ? 'none' : 'inline' }}>
+                          {item.icon}
+                        </span>
                       </div>
                       <div className="menu-text-content">
                         <span className="menu-label">{item.label}</span>
