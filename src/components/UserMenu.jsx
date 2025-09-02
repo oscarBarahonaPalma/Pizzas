@@ -4,14 +4,11 @@ const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
 
-
   useEffect(() => {
     const userData = localStorage.getItem('googleUser');
-
     if (userData) {
       try {
         const parsed = JSON.parse(userData);
-
         setUserInfo(parsed);
       } catch (error) {
         console.error('Error al parsear información del usuario:', error);
@@ -31,7 +28,7 @@ const UserMenu = () => {
   if (!userInfo) return null;
 
   return (
-    <div style={{ position: 'relative', marginTop: '8px' }}>
+    <div style={{ position: 'relative' }}>
       <button 
         onClick={toggleMenu} 
         style={{
@@ -47,9 +44,7 @@ const UserMenu = () => {
           transition: 'all 0.3s ease',
           overflow: 'hidden',
           padding: '0',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-          flexShrink: 0,
-          alignSelf: 'center'
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'scale(1.1)';
@@ -94,15 +89,16 @@ const UserMenu = () => {
       {isOpen && (
         <div 
           style={{
-            position: 'absolute',
-            top: '50px',
-            right: '0',
+            position: 'fixed',
+            top: '60px',
+            right: '10px',
             backgroundColor: 'white',
             borderRadius: '12px',
             boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
             padding: '16px',
-            minWidth: '250px',
-            zIndex: 10000,
+            minWidth: '200px',
+            maxWidth: 'calc(100vw - 20px)',
+            zIndex: 9999,
             border: '1px solid rgba(0, 0, 0, 0.1)'
           }}
         >
