@@ -21,29 +21,7 @@ const FALLING_ICONS = [
 const LoadingScreen = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Verificar si hay datos de autenticación en localStorage al cargar
-  React.useEffect(() => {
-    const checkAuthStatus = () => {
-      const googleUser = localStorage.getItem('googleUser');
-      const googleToken = localStorage.getItem('googleAccessToken');
-      
-      if (googleUser && googleToken) {
-        try {
-          const userData = JSON.parse(googleUser);
-          if (userData && userData.id) {
-            setIsAuthenticated(true);
-          }
-        } catch (error) {
-          console.error('Error al parsear datos de usuario:', error);
-          // Limpiar datos corruptos
-          localStorage.removeItem('googleUser');
-          localStorage.removeItem('googleAccessToken');
-        }
-      }
-    };
-
-    checkAuthStatus();
-  }, []);
+  // No verificar automáticamente - siempre mostrar login primero
 
   const login = useGoogleLogin({
     scope: 'email profile',
