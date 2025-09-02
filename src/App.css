@@ -1206,6 +1206,22 @@ body.theme-light .btn-order,
     padding: 12px 20px;
     font-size: 1rem;
   }
+  /* Unificar estructura y alturas entre Pizzas y Bebidas en móvil */
+  .pizza-card,
+  .drink-item {
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+  }
+  .pizzas-grid .pizza-card .pizza-image,
+  .drinks-grid .drink-item .drink-image {
+    flex: 0 0 90px;
+    height: 90px !important;
+  }
+  .pizza-info .action-row,
+  .drinks-grid .drink-item .action-row {
+    margin-top: auto !important;
+  }
 }
 
 /* Responsive general mejorado */
