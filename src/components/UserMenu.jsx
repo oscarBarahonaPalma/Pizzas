@@ -34,8 +34,8 @@ const UserMenu = () => {
       <button 
         onClick={toggleMenu} 
         style={{
-          width: '40px',
-          height: '40px',
+          width: window.innerWidth <= 480 ? '32px' : '40px',
+          height: window.innerWidth <= 480 ? '32px' : '40px',
           borderRadius: '50%',
           border: '2px solid rgba(255, 255, 255, 0.3)',
           backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -46,7 +46,8 @@ const UserMenu = () => {
           transition: 'all 0.3s ease',
           overflow: 'hidden',
           padding: '0',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+          flexShrink: 0
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'scale(1.1)';
