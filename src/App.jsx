@@ -87,7 +87,7 @@ function Pizzas() {
     { id: 'hawaiana', name: 'Pizza Hawaiana', title: '🍍 Pizza Hawaiana', description: 'Jamón y piña, una combinación perfecta que te sorprenderá', price: 150, size: 'Grande', imageSrc: '/img/Pizza_Hallayana.png', imageAlt: 'Pizza Hawaiana' },
     { id: 'especial', name: 'Pizza Especial', title: '⭐ Pizza Especial', description: 'Nuestra pizza especial con ingredientes premium seleccionados', price: 150, size: 'Grande', imageSrc: '/img/img3.png', imageAlt: 'Pizza Especial' },
     { id: 'camaron', name: 'Pizza de Camarón', title: '🦐 Pizza de Camarón', description: 'Camarones frescos con ajo, perejil y queso mozzarella', price: 200, size: 'Mediana', imageSrc: '/img/pizza_camaron.png', imageAlt: 'Pizza de Camarón' },
-    { id: 'vegetariana', name: 'Pizza Vegetariana', title: '🍕 Pizza Vegetariana', description: 'Verduras frescas seleccionadas sobre una base suave', price: 150, size: 'Mediana', imageSrc: '/img/vegetariana.png', imageAlt: 'Pizza Vegetariana' },
+    { id: 'vegetariana', name: 'Pizza Vegetariana', title: '🥬 Pizza Vegetariana', description: 'Verduras frescas seleccionadas sobre una base suave', price: 150, size: 'Mediana', imageSrc: '/img/vegetariana.png', imageAlt: 'Pizza Vegetariana' },
     { id: 'suprema', name: 'Pizza Suprema', title: '🍕 Pizza Suprema', description: 'Una combinación completa para los más exigentes', price: 150, size: 'Grande' }
   ];
   return (
