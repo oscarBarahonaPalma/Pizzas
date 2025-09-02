@@ -173,16 +173,17 @@ const MenuDerecho = () => {
           <div className="contact-info">
             <div className="info-item">
               <div className="info-icon" aria-hidden="true">
-                {/* Reloj digital minimalista */}
+                {/* Reloj futurista y elegante */}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="6.5" width="18" height="11" rx="2.5"/>
-                  {/* Dígitos estilizados con barras horizontales */}
-                  <path d="M7 9h3 M7 12h3 M7 15h3"/>
-                  {/* Dos puntos del reloj */}
-                  <circle cx="12" cy="11" r="0.7"/>
-                  <circle cx="12" cy="14" r="0.7"/>
-                  {/* Segundo bloque de dígitos */}
-                  <path d="M14 9h3 M14 12h3 M14 15h3"/>
+                  {/* Anillo exterior */}
+                  <circle cx="12" cy="12" r="8.2" />
+                  {/* Segmentos de anillo para look futurista */}
+                  <path d="M5.3 12a6.7 6.7 0 0 1 3-5.6" opacity="0.55"/>
+                  <path d="M18.7 12a6.7 6.7 0 0 1-3 5.6" opacity="0.55"/>
+                  {/* Manecillas estilizadas */}
+                  <path d="M12 12 L12 8.4"/>
+                  <path d="M12 12 L15.8 11.2"/>
+                  <circle cx="15.8" cy="11.2" r="0.8" />
                 </svg>
               </div>
               <div className="info-text">
