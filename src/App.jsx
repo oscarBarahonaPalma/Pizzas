@@ -53,7 +53,7 @@ function PizzaCard({ product }) {
             loading="lazy"
             decoding="async"
             fetchpriority="low"
-            style={product.id === 'pepperoni' ? { objectFit: 'contain', transform: 'scale(0.7)', transformOrigin: 'center center', width: '100%', height: '100%', objectPosition: 'center center' } : undefined}
+            style={product.id === 'pepperoni' ? { objectFit: 'contain', transform: 'scale(0.6)', transformOrigin: 'center center', width: '100%', height: '100%', objectPosition: 'center center' } : undefined}
           />
         ) : null}
       </div>
