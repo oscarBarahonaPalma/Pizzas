@@ -50,6 +50,9 @@ function PizzaCard({ product }) {
           <img
             src={product.imageSrc}
             alt={product.imageAlt || ''}
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
             style={product.id === 'pepperoni' ? { objectFit: 'contain', transform: 'scale(0.95)', transformOrigin: 'center center' } : undefined}
           />
         ) : null}
@@ -207,6 +210,9 @@ function DrinkItem({ product }) {
           <img
             src={product.imageSrc}
             alt={product.imageAlt || ''}
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img-Bebidas/logo.png'; }}
           />
         ) : null}
