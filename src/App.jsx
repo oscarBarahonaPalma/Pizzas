@@ -46,7 +46,13 @@ function PizzaCard({ product }) {
   return (
     <div className="pizza-card">
       <div className="pizza-image">
-        {product.imageSrc ? <img src={product.imageSrc} alt={product.imageAlt || ''} /> : null}
+        {product.imageSrc ? (
+          <img
+            src={product.imageSrc}
+            alt={product.imageAlt || ''}
+            style={product.id === 'pepperoni' ? { objectFit: 'contain', transform: 'scale(0.95)', transformOrigin: 'center center' } : undefined}
+          />
+        ) : null}
       </div>
       <div className="pizza-info">
         <h3>
