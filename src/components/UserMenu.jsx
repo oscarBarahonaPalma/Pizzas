@@ -89,15 +89,16 @@ const UserMenu = () => {
       {isOpen && (
         <div 
           style={{
-            position: 'absolute',
-            top: '50px',
-            right: '0',
+            position: 'fixed',
+            top: '70px',
+            right: '20px',
             backgroundColor: 'white',
             borderRadius: '12px',
             boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
             padding: '16px',
-            minWidth: '250px',
-            zIndex: 1000,
+            minWidth: '200px',
+            maxWidth: 'calc(100vw - 40px)',
+            zIndex: 99999,
             border: '1px solid rgba(0, 0, 0, 0.1)'
           }}
         >
