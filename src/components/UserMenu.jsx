@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,10 +90,9 @@ const UserMenu = () => {
         )}
       </button>
 
-      {isOpen && (() => {
-        console.log('Renderizando menú - isOpen:', isOpen);
-        return (
-        <div 
+      {isOpen && createPortal((
+        <>
+        <div
           style={{
             position: 'fixed',
             top: '70px',
@@ -180,9 +180,6 @@ const UserMenu = () => {
             </span>
           </button>
         </div>
-        );
-      })()}
-      {isOpen && (
         <div style={{
           position: 'fixed',
           top: 0,
@@ -191,7 +188,8 @@ const UserMenu = () => {
           bottom: 0,
           zIndex: 999
         }} onClick={() => setIsOpen(false)} />
-      )}
+        </>
+      ), document.body)}
     </div>
   );
 };
