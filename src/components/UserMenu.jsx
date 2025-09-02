@@ -28,7 +28,10 @@ const UserMenu = () => {
   if (!userInfo) return null;
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ 
+      position: 'relative',
+      display: window.innerWidth <= 768 ? 'none' : 'block'
+    }}>
       <button 
         onClick={toggleMenu} 
         style={{
