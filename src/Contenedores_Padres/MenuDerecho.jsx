@@ -172,14 +172,23 @@ const MenuDerecho = () => {
         <div className="menu-footer">
           <div className="contact-info">
             <div className="info-item">
-              <div className="info-icon">🕒</div>
+              <div className="info-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="M12 7v5l3 2" />
+                </svg>
+              </div>
               <div className="info-text">
                 <span className="info-label">Horario</span>
                 <span className="info-value">12:00 - 23:00</span>
               </div>
             </div>
             <div className="info-item">
-              <div className="info-icon">📞</div>
+              <div className="info-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.09 4.2 2 2 0 0 1 4.11 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.69.6 2.48a2 2 0 0 1-.45 2.11l-1 1a16 16 0 0 0 6 6l1-1a2 2 0 0 1 2.11-.45c.79.28 1.62.48 2.48.6A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </div>
               <div className="info-text">
                 <span className="info-label">Contacto</span>
                 <span className="info-value">(555) 123-4567</span>
