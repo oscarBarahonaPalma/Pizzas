@@ -23,10 +23,7 @@ const UserMenu = () => {
   };
 
   const toggleMenu = () => {
-    console.log('Click en UserMenu - isOpen actual:', isOpen);
-    console.log('Ancho de pantalla:', window.innerWidth);
     setIsOpen(!isOpen);
-    console.log('Nuevo isOpen debería ser:', !isOpen);
   };
 
   if (!userInfo) return null;
