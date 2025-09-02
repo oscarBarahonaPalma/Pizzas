@@ -925,18 +925,19 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   border: 1px solid #127369;
 }
 
-.price-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.pizza-details .price-badge {
+  margin-left: auto;
   background: rgba(255,255,255,0.18);
   color: #ffffff;
   border: 1px solid rgba(255,255,255,0.35);
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.95rem;
   box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+  position: static;
+  top: auto;
+  right: auto;
 }
 
 .pizza-image img {

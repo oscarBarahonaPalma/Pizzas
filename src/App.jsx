@@ -47,14 +47,13 @@ function PizzaCard({ product }) {
     <div className="pizza-card">
       <div className="pizza-image">
         {product.imageSrc ? <img src={product.imageSrc} alt={product.imageAlt || ''} /> : null}
-        <div className="price-badge">${product.price.toFixed(2)}</div>
       </div>
       <div className="pizza-info">
         <h3>
-          <img 
-            src={PIZZA_ICON} 
-            alt="" 
-            style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: 8 }} 
+          <img
+            src={PIZZA_ICON}
+            alt=""
+            style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: 8 }}
             onError={(e) => {
               e.target.style.display = 'none';
               e.target.nextSibling.style.display = 'inline';
@@ -66,6 +65,7 @@ function PizzaCard({ product }) {
         <p>{product.description}</p>
         <div className="pizza-details">
           <span className="size">{product.size}</span>
+          <div className="price-badge">${product.price.toFixed(2)}</div>
         </div>
         <div className="action-row">
           <div className="qty-control">
