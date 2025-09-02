@@ -36,10 +36,10 @@ const LoadingScreen = ({ children }) => {
           
           if (response.ok) {
             const userInfo = await response.json();
-
             
             // Guardar información completa del usuario
             localStorage.setItem('googleUser', JSON.stringify(userInfo));
+            localStorage.setItem('googleAccessToken', credentialResponse.access_token);
             setIsAuthenticated(true);
           } else {
             throw new Error('Error al obtener información del usuario');
@@ -50,21 +50,62 @@ const LoadingScreen = ({ children }) => {
       } catch (error) {
         console.error('Error al procesar la autenticación:', error);
         // Fallback: guardar respuesta básica si falla
-
         localStorage.setItem('googleUser', JSON.stringify(credentialResponse));
         setIsAuthenticated(true);
       }
     },
     onError: (error) => {
       console.error('Error en el login de Google:', error);
-    }
+      // Mostrar mensaje de error más amigable
+      alert('Error al iniciar sesión con Google. Por favor, intenta nuevamente.');
+    },
+    // Configuración adicional para manejar COOP
+    ux_mode: 'popup',
+    redirect_uri: window.location.origin
   });
 
   const handleGoogleLogin = () => {
     try {
-      login();
+      // Verificar si el navegador soporta popups
+      if (window.screen && window.screen.width < 768) {
+        // En dispositivos móviles, usar redirect en lugar de popup
+        const loginWithRedirect = useGoogleLogin({
+          scope: 'email profile',
+          onSuccess: async (credentialResponse) => {
+            try {
+              if (credentialResponse.access_token) {
+                const response = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+                  headers: {
+                    'Authorization': `Bearer ${credentialResponse.access_token}`
+                  }
+                });
+                
+                if (response.ok) {
+                  const userInfo = await response.json();
+                  localStorage.setItem('googleUser', JSON.stringify(userInfo));
+                  localStorage.setItem('googleAccessToken', credentialResponse.access_token);
+                  setIsAuthenticated(true);
+                }
+              }
+            } catch (error) {
+              console.error('Error en autenticación móvil:', error);
+            }
+          },
+          onError: (error) => {
+            console.error('Error en login móvil:', error);
+            alert('Error al iniciar sesión. Por favor, intenta nuevamente.');
+          },
+          ux_mode: 'redirect',
+          redirect_uri: window.location.origin
+        });
+        loginWithRedirect();
+      } else {
+        // En desktop, usar popup
+        login();
+      }
     } catch (error) {
       console.error('Error al iniciar el proceso de login:', error);
+      alert('Error al iniciar sesión. Por favor, verifica que los popups estén habilitados.');
     }
   };
 
