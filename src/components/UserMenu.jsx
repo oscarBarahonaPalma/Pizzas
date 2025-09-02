@@ -36,6 +36,7 @@ const UserMenu = () => {
   };
 
   const toggleMenu = () => {
+    console.log('Toggle clicked - isOpen:', isOpen, 'isMobile:', isMobile);
     setIsOpen(!isOpen);
   };
 
@@ -118,6 +119,7 @@ const UserMenu = () => {
             border: '1px solid rgba(0, 0, 0, 0.1)'
           }}
         >
+          {console.log('Menu rendering - isOpen:', isOpen, 'isMobile:', isMobile)}
           <div style={{
             display: 'flex',
             alignItems: 'center',
