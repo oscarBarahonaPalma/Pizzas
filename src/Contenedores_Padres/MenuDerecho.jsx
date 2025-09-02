@@ -173,9 +173,16 @@ const MenuDerecho = () => {
           <div className="contact-info">
             <div className="info-item">
               <div className="info-icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="8.5" />
-                  <path d="M12 7v5l3 2" />
+                {/* Reloj digital minimalista */}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="6.5" width="18" height="11" rx="2.5"/>
+                  {/* Dígitos estilizados con barras horizontales */}
+                  <path d="M7 9h3 M7 12h3 M7 15h3"/>
+                  {/* Dos puntos del reloj */}
+                  <circle cx="12" cy="11" r="0.7"/>
+                  <circle cx="12" cy="14" r="0.7"/>
+                  {/* Segundo bloque de dígitos */}
+                  <path d="M14 9h3 M14 12h3 M14 15h3"/>
                 </svg>
               </div>
               <div className="info-text">
