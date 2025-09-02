@@ -214,7 +214,7 @@
   .Header {
     padding: 0 1rem;
     height: 55px;
-    justify-content: space-between; /* Mantener espacio entre elementos */
+    justify-content: flex-end; /* Mover botones hacia la derecha en tablets */
     align-items: center;
   }
   
