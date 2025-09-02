@@ -22,7 +22,10 @@ const UserMenu = () => {
   };
 
   const toggleMenu = () => {
+    console.log('Toggle clicked, current isOpen:', isOpen);
+    console.log('Screen width:', window.innerWidth);
     setIsOpen(!isOpen);
+    console.log('New isOpen should be:', !isOpen);
   };
 
   if (!userInfo) return null;
@@ -92,14 +95,14 @@ const UserMenu = () => {
             position: 'fixed',
             top: '70px',
             right: '20px',
-            backgroundColor: 'white',
+            backgroundColor: 'red',
             borderRadius: '12px',
             boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
             padding: '16px',
             minWidth: '200px',
             maxWidth: 'calc(100vw - 40px)',
             zIndex: 99999,
-            border: '1px solid rgba(0, 0, 0, 0.1)'
+            border: '3px solid blue'
           }}
         >
           <div style={{
