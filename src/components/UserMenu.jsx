@@ -36,6 +36,7 @@ const UserMenu = () => {
   };
 
   const toggleMenu = () => {
+    console.log('Toggle menu clicked, current state:', isOpen, 'isMobile:', isMobile);
     setIsOpen(!isOpen);
   };
 
@@ -103,19 +104,22 @@ const UserMenu = () => {
       </button>
 
       {isOpen && (
-        <div style={{
-          position: 'absolute',
-          top: isMobile ? '45px' : '50px',
-          right: isMobile ? '-10px' : '0',
-          backgroundColor: 'white',
-          borderRadius: '12px',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
-          padding: '16px',
-          minWidth: isMobile ? '200px' : '250px',
-          maxWidth: isMobile ? 'calc(100vw - 40px)' : 'none',
-          zIndex: 1000,
-          border: '1px solid rgba(0, 0, 0, 0.1)'
-        }}>
+        <div 
+          style={{
+            position: isMobile ? 'fixed' : 'absolute',
+            top: isMobile ? '60px' : '50px',
+            right: isMobile ? '10px' : '0',
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
+            padding: '16px',
+            minWidth: isMobile ? '200px' : '250px',
+            maxWidth: isMobile ? 'calc(100vw - 40px)' : 'none',
+            zIndex: 10000,
+            border: '1px solid rgba(0, 0, 0, 0.1)'
+          }}
+          onLoad={() => console.log('Menu rendered, isMobile:', isMobile)}
+        >
           <div style={{
             display: 'flex',
             alignItems: 'center',
