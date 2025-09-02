@@ -290,7 +290,7 @@ function Pedidos() {
   const { orders } = useContext(CartContext);
   return (
     <div className="page-content">
-      <h1>Mis Pedidos</h1>
+      <h1 className="pedidos-title">Mis Pedidos</h1>
       <div className="orders-panel">
         {orders.length === 0 ? (
           <p>No tienes pedidos aún.</p>

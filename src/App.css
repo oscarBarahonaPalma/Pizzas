@@ -178,6 +178,64 @@ body.theme-light .pizzas-subtitle { color: #333; }
   color: #2b2b2b;
 }
 
+/* Título especial para Mis Pedidos */
+.pedidos-title {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 25%, #ff6b6b 50%, #ff4757 75%, #ff6b6b 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.8rem !important;
+  font-weight: 900 !important;
+  text-align: center;
+  margin: 0 0 24px 0 !important;
+  text-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+  animation: gradientShift 3s ease-in-out infinite;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+.pedidos-title::before {
+  content: "📋";
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.pedidos-title::after {
+  content: "📋";
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  animation: bounce 2s ease-in-out infinite 0.5s;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(-50%);
+  }
+  40% {
+    transform: translateY(-60%);
+  }
+  60% {
+    transform: translateY(-40%);
+  }
+}
+
 /* Professional page title styling */
 .page-title.pro {
   display: flex;
@@ -873,6 +931,15 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
     font-size: 2rem;
   }
   
+  .pedidos-title {
+    font-size: 2.2rem !important;
+  }
+  
+  .pedidos-title::before,
+  .pedidos-title::after {
+    display: none;
+  }
+  
   .page-content p {
     font-size: 1.1rem;
   }
@@ -910,6 +977,11 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 @media (max-width: 480px) {
   .page-content h1 {
     font-size: 1.75rem;
+  }
+  
+  .pedidos-title {
+    font-size: 1.9rem !important;
+    letter-spacing: 0.5px;
   }
   
   .page-content p {
@@ -1855,6 +1927,11 @@ body.theme-light .btn-order,
 
   .page-content h1 {
     font-size: 1.5rem;
+  }
+  
+  .pedidos-title {
+    font-size: 1.6rem !important;
+    letter-spacing: 0.3px;
   }
 
   .page-content p {
