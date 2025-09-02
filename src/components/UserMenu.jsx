@@ -3,6 +3,18 @@ import React, { useState, useEffect } from 'react';
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   useEffect(() => {
     const userData = localStorage.getItem('googleUser');
@@ -25,13 +37,13 @@ const UserMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  // No renderizar nada en pantallas pequeñas
+  if (isSmallScreen) return null;
+  
   if (!userInfo) return null;
 
   return (
-    <div style={{ 
-      position: 'relative',
-      display: window.innerWidth <= 768 ? 'none' : 'block'
-    }}>
+    <div style={{ position: 'relative' }}>
       <button 
         onClick={toggleMenu} 
         style={{

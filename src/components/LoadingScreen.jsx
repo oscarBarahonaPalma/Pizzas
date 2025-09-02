@@ -197,7 +197,7 @@ const LoadingScreen = ({ children }) => {
               e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
               e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
               e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              e.target.style.boxShadow = '0 4px 15px rgba(0, 0no lo, 0, 0.2)';
             }}
           >
             <svg width="20" height="20" viewBox="0 0 24 24">
