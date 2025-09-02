@@ -101,18 +101,20 @@ const MenuDerecho = () => {
 
   return (
     <>
-      {/* Botón hamburguesa mejorado */}
-      <button 
-        className={`hamburger-btn ${isOpen ? 'active' : ''}`}
-        onClick={toggleMenu}
-        aria-label="Toggle menu"
-      >
-        <div className="hamburger-inner">
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-        </div>
-      </button>
+      {/* Botón hamburguesa (solo cuando el menú está cerrado) */}
+      {(!isOpen) && (
+        <button 
+          className={`hamburger-btn`}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <div className="hamburger-inner">
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+          </div>
+        </button>
+      )}
 
       {/* Menú principal */}
       <div className={`menu-derecho ${isOpen ? 'open' : 'closed'}`}>
