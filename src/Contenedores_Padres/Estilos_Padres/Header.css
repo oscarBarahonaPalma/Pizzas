@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  padding-top: 8px;
+  padding-top: 15px;
 }
 
 .header-logo {
@@ -87,7 +87,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding-top: 8px;
+  padding-top: 15px;
 }
 
 /* Botón de Contacto - Estilo elegante y delgado */
