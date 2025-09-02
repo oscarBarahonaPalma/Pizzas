@@ -284,7 +284,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
 /* Imágenes de bebidas */
 .drink-image {
   width: 100%;
-  height: 180px;
+  height: 120px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -302,7 +302,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
   max-height: 100%;
   object-fit: contain;
   transition: transform 0.3s ease;
-  transform: scale(1.35);
+  transform: scale(1);
   transform-origin: center center;
 }
 
@@ -316,7 +316,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
   display: block;
 }
 
-.drink-item:hover .drink-image img { transform: scale(1.42); }
+.drink-item:hover .drink-image img { transform: scale(1.1); }
 
 /* Scoped Fanta fill effect (only for .drink-image.fanta-fill) */
 .drink-image.fanta-fill { position: relative; overflow: hidden; }
@@ -1146,7 +1146,7 @@ body.theme-light .btn-order,
   .pizza-image {
     height: 110px;
   }
-  .drink-image { height: 160px; }
+  .drink-image { height: 110px; }
   
   .pizza-info {
     padding: 20px;
@@ -1183,7 +1183,7 @@ body.theme-light .btn-order,
   .pizza-image {
     height: 90px;
   }
-  .drink-image { height: 140px; }
+  .drink-image { height: 90px; }
   
   .pizzas-grid,
   .drinks-grid {
