@@ -1,0 +1,299 @@
+.Header {
+  width: 100%;
+  height: 60px; /* Reduced height */
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+}
+
+.brand-logo {
+  height: 44px;
+  width: auto;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pizzas-title {
+  font-size: 1.4rem; /* Smaller title */
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 0.2rem 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.2px;
+  line-height: 1.1;
+}
+
+.pizzas-subtitle {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.1px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Botón de Contacto - Estilo elegante y delgado */
+.contact-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  border-radius: 18px;
+  font-weight: 400;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  letter-spacing: 0.3px;
+}
+
+.contact-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transition: left 0.4s ease;
+}
+
+.contact-button:hover::before {
+  left: 100%;
+}
+
+.contact-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.contact-button:active {
+  transform: translateY(0);
+}
+
+/* Botón de Carrito - Estilo elegante y delgado */
+.cart-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  border-radius: 18px;
+  font-weight: 400;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  letter-spacing: 0.3px;
+}
+
+.cart-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transition: left 0.4s ease;
+}
+
+.cart-button:hover::before {
+  left: 100%;
+}
+
+.cart-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.cart-button:active {
+  transform: translateY(0);
+}
+
+/* Contador del carrito - número blanco y visible */
+.cart-button span {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4444;
+  color: #ffffff !important; /* Forced white color */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 1000;
+  border: 2px solid #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Added for better legibility */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .Header {
+    padding: 0 1.5rem;
+  }
+  
+  .pizzas-title {
+    font-size: 1.3rem;
+  }
+  
+  .pizzas-subtitle {
+    font-size: 0.7rem;
+  }
+  
+  .header-actions {
+    gap: 1rem;
+  }
+  
+  .contact-button,
+  .cart-button {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .Header {
+    padding: 0 1rem;
+    min-height: 70px;
+  }
+  
+  .pizzas-title {
+    font-size: 1.2rem;
+  }
+  
+  .pizzas-subtitle {
+    font-size: 0.65rem;
+  }
+  
+  .header-actions {
+    gap: 0.8rem;
+  }
+  
+  .contact-button,
+  .cart-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .brand-logo {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Header {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    min-height: auto;
+  }
+  
+  .header-center {
+    position: static;
+    transform: none;
+    order: 3;
+  }
+  
+  .pizzas-title {
+    font-size: 1.1rem;
+  }
+  
+  .pizzas-subtitle {
+    font-size: 0.65rem;
+  }
+  
+  .header-actions {
+    gap: 0.6rem;
+  }
+  
+  .contact-button,
+  .cart-button {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+  }
+  
+  .brand-logo {
+    height: 35px;
+  }
+}

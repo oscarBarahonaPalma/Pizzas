@@ -1,0 +1,1835 @@
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.action-row .btn-order.inline {
+  width: auto;
+  min-width: 110px;
+  background: #127369;
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(18,115,105,0.35);
+  padding: 10px 14px;
+}
+
+.action-row .btn-order.inline:hover {
+  background: #0f5e56;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Small flying ball for add-to-cart animation */
+
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background: #2f3640;
+  color: #2b2b2b;
+}
+
+/* Tema claro crema */
+body.theme-light {
+  background: #f5efe6;
+}
+
+/* Ajustes de contraste en tema claro */
+body.theme-light .Header {
+  background: #f0e7db;
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+
+body.theme-light .contenido-principal {
+  background: #f5efe6;
+}
+
+/* Tarjetas oscuras sobre fondo claro */
+body.theme-light .pizzas-grid .pizza-card,
+body.theme-light .drinks-grid .drink-item,
+body.theme-light .desserts-grid .dessert-item {
+  background: rgba(33, 33, 33, 0.88) !important;
+  border: 1px solid rgba(0,0,0,0.28) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Contraste de texto dentro de tarjetas en tema claro */
+body.theme-light .pizzas-grid .pizza-card .pizza-info h3,
+body.theme-light .pizzas-grid .pizza-card .pizza-info p,
+body.theme-light .drinks-grid .drink-item h3,
+body.theme-light .drinks-grid .drink-item p,
+body.theme-light .desserts-grid .dessert-item h3,
+body.theme-light .desserts-grid .dessert-item p {
+  color: #ffffff !important;
+}
+
+/* Forzar texto oscuro en el contenido principal en tema claro */
+body.theme-light .page-content,
+body.theme-light .page-content * {
+  color: #111 !important;
+}
+
+/* Títulos y subtítulos del header centrado en tema claro */
+body.theme-light .pizzas-title { color: #111; }
+body.theme-light .pizzas-subtitle { color: #333; }
+
+.contenido-principal {
+  margin-top: 45px;
+  margin-left: 280px;
+  min-height: calc(100vh - 45px);
+  background: #2f3640;
+  transition: margin-left 0.3s ease;
+  position: relative;
+  z-index: 3;
+}
+
+/* Falling icons background */
+.falling-icons-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+  /* Crear máscara para ocultar las imágenes en la zona central */
+  mask: radial-gradient(ellipse 400px 500px at center, transparent 0%, transparent 40%, black 50%);
+  -webkit-mask: radial-gradient(ellipse 400px 500px at center, transparent 0%, transparent 40%, black 50%);
+}
+
+.falling-icon {
+  position: absolute;
+  top: -64px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.8;
+  animation: fall var(--duration, 12s) linear infinite;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+
+
+/* En móviles: íconos más pequeños y más sutiles */
+@media (max-width: 768px) {
+  .falling-icon {
+    width: 36px;
+    height: 36px;
+    opacity: 0.75;
+  }
+}
+
+@media (max-width: 480px) {
+  .falling-icon {
+    width: 28px;
+    height: 28px;
+    opacity: 0.7;
+  }
+}
+
+@keyframes fall {
+  0% { transform: translateY(-64px) translateX(0) rotate(0deg); }
+  100% { transform: translateY(110vh) translateX(var(--drift, 30px)) rotate(220deg); }
+}
+
+
+
+/* stagger positions and delays */
+.fi-0 { left: 5%;  animation-delay: 0s; }
+.fi-1 { left: 15%; animation-delay: 2s; }
+.fi-2 { left: 25%; animation-delay: 4s; }
+.fi-3 { left: 35%; animation-delay: 1s; }
+.fi-4 { left: 45%; animation-delay: 3s; }
+.fi-5 { left: 55%; animation-delay: 5s; }
+.fi-0:nth-of-type(6n+1) { left: 65%; animation-delay: 1.5s; }
+.fi-1:nth-of-type(6n+2) { left: 75%; animation-delay: 3.5s; }
+.fi-2:nth-of-type(6n+3) { left: 85%; animation-delay: 5.5s; }
+.fi-3:nth-of-type(6n+4) { left: 12%; animation-delay: 6.5s; }
+.fi-4:nth-of-type(6n+5) { left: 52%; animation-delay: 7.5s; }
+.fi-5:nth-of-type(6n+6) { left: 92%; animation-delay: 8.5s; }
+
+@media (max-width: 768px) {
+  .contenido-principal {
+    margin-left: 0;
+    margin-top: 70px;
+  }
+}
+
+.page-content {
+  padding: 0 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-content h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  color: #2b2b2b;
+}
+
+.page-content p {
+  font-size: 1.2rem;
+  color: #6f6f6f;
+  margin: 0 0 32px 0;
+  line-height: 1.7;
+}
+
+.pizza-grid,
+.drinks-grid,
+.desserts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.pizza-item,
+.drink-item,
+.dessert-item {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #f0f0f0;
+  transition: all 0.25s ease;
+  box-shadow: none;
+}
+
+.pizza-item:hover,
+.drink-item:hover,
+.dessert-item:hover,
+.desserts-grid .dessert-item:hover {
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  transform: translateY(-6px);
+}
+
+.pizza-item h3,
+.drink-item h3,
+.dessert-item h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #2b2b2b;
+}
+
+.pizza-item p,
+.drink-item p,
+.dessert-item p {
+  color: #6f6f6f;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  font-size: 0.98rem;
+}
+
+.pizza-item .price {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid rgba(230, 57, 70, 0.28);
+}
+
+.drink-item .price {
+  background: #ffffff;
+  color: #2b2b2b;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid #e0e0e0;
+}
+
+/* Imágenes de bebidas */
+.drink-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222222;
+  border: 1px solid #127369;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: none;
+  position: relative;
+}
+
+.drink-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  transform: scale(1.35);
+  transform-origin: center center;
+}
+
+/* Video dentro de drink-image debe comportarse como la imagen */
+.drink-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+  display: block;
+}
+
+.drink-item:hover .drink-image img { transform: scale(1.42); }
+
+/* Scoped Fanta fill effect (only for .drink-image.fanta-fill) */
+.drink-image.fanta-fill { position: relative; overflow: hidden; }
+.drink-image.fanta-fill::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0; width: 100%; height: 0%;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='22' viewBox='0 0 160 22'%3E%3Cpath d='M0 10 C 30 0 50 20 80 10 S 130 0 160 10 V22 H0 Z' fill='%23ffa726'/%3E%3C/svg%3E"),
+    linear-gradient(#ffa726, #ffa726);
+  background-repeat: repeat-x, no-repeat;
+  background-size: 160px 22px, 100% 100%;
+  background-position: 0 0, 0 0;
+  opacity: 0.92;
+  border-bottom-left-radius: inherit; border-bottom-right-radius: inherit;
+  z-index: 0;
+  animation: fantaFill 7000ms cubic-bezier(0.2, 0.8, 0.2, 1) 200ms infinite,
+             waveMove 2400ms linear infinite;
+}
+.drink-image.fanta-fill::before { content: none; }
+.drink-image.fanta-fill img { position: relative; z-index: 1; }
+.drink-image.fanta-fill .price-badge { position: absolute; z-index: 5; }
+
+/* Bubbles and ice scoped */
+.drink-image.fanta-fill .fanta-bubbles {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.55) 2px, transparent 3px),
+    radial-gradient(rgba(255,255,255,0.35) 1.5px, transparent 2.5px);
+  background-size: 18px 28px, 22px 32px;
+  background-position: 0 110%, 10px 110%;
+  mix-blend-mode: screen; opacity: 0.85;
+  animation: bubblesRise 3600ms linear 400ms infinite;
+}
+.drink-image.fanta-fill .ice-cube {
+  position: absolute; width: 22px; height: 22px; border-radius: 5px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,0.1) 100%),
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.65), transparent 40%);
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.4), inset 0 -5px 10px rgba(0,0,0,0.2), 0 3px 10px rgba(0,0,0,0.25);
+  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  opacity: 0.95; z-index: 5; animation: cubeFloatScoped 5200ms ease-in-out infinite;
+}
+.drink-image.fanta-fill .ic1 { left: 18%; bottom: 18%; animation-delay: 0.2s; }
+.drink-image.fanta-fill .ic2 { left: 46%; bottom: 22%; transform: rotate(-6deg); animation-delay: 0.6s; }
+.drink-image.fanta-fill .ic3 { left: 68%; bottom: 16%; transform: rotate(10deg); animation-delay: 1.0s; }
+.drink-image.fanta-fill .ic4 { left: 32%; bottom: 14%; transform: rotate(4deg); animation-delay: 1.4s; }
+
+@keyframes fantaFill {
+  0% { height: 0%; }
+  40% { height: 90%; }
+  60% { height: 90%; }
+  100% { height: 0%; }
+}
+/* waveMove already declared; using it to scroll the wave embedded in ::after */
+@keyframes waveMove { 0% { background-position: 0 0; } 100% { background-position: -160px 0; } }
+@keyframes bubblesRise { 0% { background-position: 0 110%, 10px 110%; opacity: 0.7; } 50% { background-position: 0 40%, 10px 40%; opacity: 1; } 100% { background-position: 0 -10%, 10px -10%; opacity: 0.7; } }
+@keyframes cubeFloatScoped { 0% { transform: translateY(0) rotate(4deg); } 50% { transform: translateY(-3px) rotate(0deg); } 100% { transform: translateY(0) rotate(4deg); } }
+
+/* Entrada pro para Bebidas */
+.drinks-grid .drink-item {
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+  animation: drinkCardIn 680ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: rgba(33,33,33,0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,0.28);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.drinks-grid .drink-item .drink-image img {
+  transform: scale(0.98);
+  animation: drinkImgIn 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Match pizzas glass style for drink cards */
+.drinks-grid .drink-item {
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+}
+
+.drinks-grid .drink-item::before { content: none; }
+
+.drinks-grid .drink-item h3 { color: #ffffff; }
+.drinks-grid .drink-item p { color: rgba(255,255,255,0.85); }
+
+/* Stagger (escalonado) */
+.drinks-grid .drink-item:nth-child(1) { animation-delay: 60ms; }
+.drinks-grid .drink-item:nth-child(2) { animation-delay: 160ms; }
+.drinks-grid .drink-item:nth-child(3) { animation-delay: 260ms; }
+.drinks-grid .drink-item:nth-child(4) { animation-delay: 360ms; }
+.drinks-grid .drink-item:nth-child(5) { animation-delay: 460ms; }
+.drinks-grid .drink-item:nth-child(6) { animation-delay: 560ms; }
+
+.drinks-grid .drink-item:nth-child(1) .drink-image img { animation-delay: 140ms; }
+.drinks-grid .drink-item:nth-child(2) .drink-image img { animation-delay: 240ms; }
+.drinks-grid .drink-item:nth-child(3) .drink-image img { animation-delay: 340ms; }
+.drinks-grid .drink-item:nth-child(4) .drink-image img { animation-delay: 440ms; }
+.drinks-grid .drink-item:nth-child(5) .drink-image img { animation-delay: 540ms; }
+.drinks-grid .drink-item:nth-child(6) .drink-image img { animation-delay: 640ms; }
+
+@keyframes drinkCardIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes drinkImgIn {
+  0% {
+    transform: scale(0.98);
+  }
+  60% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Entradas épicas por tarjeta (TL, TR, Bottom-Center) */
+.drinks-grid .drink-item:nth-child(1) {
+  animation-name: drinkInFromTL;
+  animation-duration: 800ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-fill-mode: forwards;
+  animation-delay: 60ms;
+  transform-origin: left top;
+}
+
+.drinks-grid .drink-item:nth-child(2) {
+  animation-name: drinkInFromTR;
+  animation-duration: 820ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-fill-mode: forwards;
+  animation-delay: 160ms;
+  transform-origin: right top;
+}
+
+.drinks-grid .drink-item:nth-child(3) {
+  animation-name: drinkInFromBottomCenter;
+  animation-duration: 860ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-fill-mode: forwards;
+  animation-delay: 260ms;
+  transform-origin: center bottom;
+}
+
+@keyframes drinkInFromTL {
+  0% {
+    opacity: 0;
+    transform: translate(-120%, -120%) rotate(-6deg) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(8px, -6px) rotate(1deg) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0) scale(1);
+  }
+}
+
+@keyframes drinkInFromTR {
+  0% {
+    opacity: 0;
+    transform: translate(120%, -120%) rotate(6deg) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-8px, -6px) rotate(-1deg) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0) scale(1);
+  }
+}
+
+@keyframes drinkInFromBottomCenter {
+  0% {
+    opacity: 0;
+    transform: translate(0, 120%) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(0, -6px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* Respeta preferencias del usuario (reduce motion) */
+@media (prefers-reduced-motion: reduce) {
+  .drinks-grid .drink-item,
+  .drinks-grid .drink-item .drink-image img {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.dessert-item .price {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 230, 109, 0.28);
+}
+
+.orders-section {
+  margin-top: 40px;
+}
+
+.order-status {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.order-status h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: #ffffff;
+}
+
+.order-status p {
+  color: #b0b0b0;
+  margin: 0 0 20px 0;
+  font-size: 1rem;
+}
+
+/* Cart glass panel */
+.cart-panel {
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+}
+
+.cart-row {
+  display: grid;
+  grid-template-columns: 1fr 100px 32px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cart-row:last-child {
+  border-bottom: none;
+}
+
+.cart-item-name {
+  color: #fff;
+}
+
+.cart-item-price {
+  color: #fff;
+  font-weight: 600;
+  text-align: right;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.cart-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+/* Checkout */
+.checkout-panel {
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+}
+
+.checkout-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.payment-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.payment-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+}
+
+.payment-card.selected {
+  border-color: #2ed573;
+  box-shadow: 0 0 0 2px rgba(46, 213, 115, 0.3) inset;
+}
+
+.payment-icon {
+  width: 36px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.payment-title {
+  font-weight: 700;
+}
+
+.payment-sub {
+  color: #b0b0b0;
+  font-size: 0.9rem;
+}
+
+.checkout-actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-form {
+  margin-top: 12px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.form-row label {
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
+
+.form-row input {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.form-row-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.form-error {
+  margin-top: 6px;
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+/* Error de cantidad en tarjetas: forzar blanco para mejor contraste */
+.action-row .form-error {
+  color: #ffffff !important;
+}
+
+.checkout-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.checkout-modal {
+  width: min(520px, 92%);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 24px;
+  text-align: center;
+}
+
+.modal-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #ff6b6b;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Orders list */
+.orders-panel {
+  margin-top: 14px;
+  background:
+    linear-gradient(165deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 35%),
+    linear-gradient(135deg, rgba(13,13,13,0.45) 0%, rgba(33,33,33,0.45) 35%, rgba(43,43,43,0.38) 65%, rgba(58,58,58,0.30) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px;
+  backdrop-filter: blur(12px);
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.28),
+    0 18px 44px rgba(0,0,0,0.26),
+    0 28px 70px rgba(0,0,0,0.22);
+}
+
+/* Asegurar contraste en tema claro dentro de Mis Pedidos */
+body.theme-light .orders-panel {
+  background:
+    linear-gradient(165deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 35%),
+    linear-gradient(135deg, rgba(13,13,13,0.45) 0%, rgba(33,33,33,0.45) 35%, rgba(43,43,43,0.38) 65%, rgba(58,58,58,0.30) 100%) !important;
+}
+body.theme-light .orders-panel .order-id { color: #ffffff !important; }
+body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
+
+/* Borde de luz interior para el volumen */
+.orders-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    inset 0 -1px 0 rgba(0,0,0,0.25);
+}
+
+/* Halo suave exterior para efecto 3D flotante */
+.orders-panel::after {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 20px;
+  z-index: -1;
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 40%, rgba(0,0,0,0) 70%),
+    radial-gradient(100% 60% at 50% 120%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.0) 70%);
+  filter: blur(16px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.order-row:last-child {
+  border-bottom: none;
+}
+
+.order-id {
+  font-weight: 600;
+}
+
+.order-status {
+  color: #ffe66d;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: 20px;
+  }
+  
+  .page-content h1 {
+    font-size: 2rem;
+  }
+  
+  .page-content p {
+    font-size: 1.1rem;
+  }
+  
+  .pizza-grid,
+  .drinks-grid,
+  .desserts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .pizza-item,
+  .drink-item,
+  .dessert-item {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content h1 {
+    font-size: 1.75rem;
+  }
+  
+  .page-content p {
+    font-size: 1rem;
+  }
+  
+  .pizza-item,
+  .drink-item,
+  .dessert-item {
+    padding: 16px;
+  }
+  
+  .pizza-item h3,
+  .drink-item h3,
+  .dessert-item h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Estilos para las tarjetas de pizzas */
+.pizzas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: -15px;
+}
+
+/* Ajuste: subir tarjetas de Bebidas */
+.drinks-grid {
+  margin-top: -15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Subir las tarjetas solo en la página de Bebidas */
+.page-content:has(.drinks-grid) {
+  padding-top: -15px;
+}
+
+/* Igualar altura con Pizzas y Promociones/Paquetes */
+.page-content:has(.pizzas-grid),
+.page-content:has(.desserts-grid) {
+  padding-top: -15px;
+}
+
+/* En la página de Bebidas, reduce el padding top del contenido para subir las tarjetas */
+/* revert: no adjustment for drinks page padding */
+
+/* Igualar altura inicial en Pizzas y Promociones/Paquetes */
+/* revert: no adjustment for pizzas/desserts page padding */
+
+/* Revertido: sin fondo temático extra en Bebidas */
+
+.pizza-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.pizza-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pizza-image {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  position: relative;
+  background: #222222;
+  border: 1px solid #127369;
+}
+
+/* Promos/Postres usan mismo bloque visual de tarjeta */
+.dessert-image {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  position: relative;
+  background: #222222;
+  border: 1px solid #127369;
+}
+
+.price-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+}
+
+.pizza-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.pizza-card:hover .pizza-image img {
+  transform: scale(1.1);
+}
+
+.pizza-info {
+  padding: 16px;
+}
+
+.pizza-info h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: #ffffff;
+}
+
+.pizza-info p {
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  font-size: 1rem;
+}
+
+.pizza-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  padding: 8px 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.qty-value {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.btn-qty {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.35);
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-qty:hover {
+  background: linear-gradient(135deg, #127369 0%, #0f5e56 100%) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Al hacer click: mismo color que el botón Agregar */
+.btn-qty:active {
+  background: linear-gradient(135deg, #127369 0%, #0f5e56 100%) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  transform: scale(0.98);
+}
+
+.btn-qty.minus {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+
+.btn-qty.plus {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+
+.price {
+  background: #ffffff;
+  color: #2b2b2b;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid #e0e0e0;
+  box-shadow: none;
+}
+
+.size {
+  background: #ffffff;
+  color: #2b2b2b;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #e0e0e0;
+}
+
+.btn-order {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 120px;
+  background: linear-gradient(135deg, #127369 0%, #0f5e56 100%);
+  color: #ffffff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.3s ease;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  box-shadow: 0 8px 22px rgba(18,115,105,0.35);
+  margin-top: 8px;
+}
+
+/* Center the primary action button across the card width */
+.pizza-info .btn-order,
+.drink-item .btn-order {
+  width: 100%;
+}
+
+.btn-order:hover {
+  background: linear-gradient(135deg, #0f5e56 0%, #127369 100%);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 26px rgba(18,115,105,0.45);
+}
+
+/* Forzar texto blanco en los botones Agregar en todos los temas */
+body.theme-light .btn-order,
+.btn-order,
+.action-row .btn-order,
+.pizza-info .btn-order,
+.drink-item .btn-order {
+  color: #ffffff !important;
+}
+
+/* Responsive para las tarjetas de pizzas */
+@media (max-width: 768px) {
+  .pizzas-grid {
+    gap: 12px;
+  }
+  
+  .pizza-card {
+    margin: 0 4px;
+  }
+  
+  .pizza-image {
+    height: 110px;
+  }
+  .drink-image { height: 160px; }
+  
+  .pizza-info {
+    padding: 20px;
+  }
+  
+  /* Evitar tarjetas muy altas: limitar líneas en títulos y descripciones */
+  .pizza-info h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .drink-item h3,
+  .dessert-item h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .pizza-info p,
+  .drink-item p,
+  .dessert-item p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .pizza-image {
+    height: 90px;
+  }
+  .drink-image { height: 140px; }
+  
+  .pizzas-grid,
+  .drinks-grid {
+    gap: 10px;
+  }
+  .pizza-card,
+  .drink-item {
+    margin: 0 2px;
+  }
+  
+  .pizza-info {
+    padding: 18px;
+  }
+  
+  .pizza-info h3 {
+    font-size: 1.4rem;
+  }
+  
+  .btn-order {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Responsive general mejorado */
+@media (max-width: 1200px) {
+  .contenido-principal {
+    margin-left: 250px;
+  }
+  
+  .page-content {
+    padding: 0 30px;
+  }
+}
+
+/* --- Pro Entrance for Drinks (overrides previous) --- */
+.drinks-grid .drink-item {
+  opacity: 0;
+  transform: perspective(1000px) translateY(12px) scale(0.985) rotateX(4deg);
+  will-change: transform, opacity, box-shadow;
+  animation: drinkProCardIn 680ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+             drinkShadowBloom 900ms ease-out forwards;
+}
+
+.drinks-grid .drink-item:nth-child(1) { animation-delay: 60ms, 60ms; }
+.drinks-grid .drink-item:nth-child(2) { animation-delay: 140ms, 140ms; }
+.drinks-grid .drink-item:nth-child(3) { animation-delay: 220ms, 220ms; }
+.drinks-grid .drink-item:nth-child(4) { animation-delay: 300ms, 300ms; }
+.drinks-grid .drink-item:nth-child(5) { animation-delay: 380ms, 380ms; }
+.drinks-grid .drink-item:nth-child(6) { animation-delay: 460ms, 460ms; }
+
+.drink-image {
+  position: relative;
+}
+
+.drinks-grid .drink-item .drink-image img {
+  transform: translateZ(0) scale(0.98) rotateX(1deg);
+  will-change: transform;
+  animation: drinkProImgIn 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.drinks-grid .drink-item:nth-child(1) .drink-image img { animation-delay: 140ms; }
+.drinks-grid .drink-item:nth-child(2) .drink-image img { animation-delay: 220ms; }
+.drinks-grid .drink-item:nth-child(3) .drink-image img { animation-delay: 300ms; }
+.drinks-grid .drink-item:nth-child(4) .drink-image img { animation-delay: 380ms; }
+.drinks-grid .drink-item:nth-child(5) .drink-image img { animation-delay: 460ms; }
+.drinks-grid .drink-item:nth-child(6) .drink-image img { animation-delay: 540ms; }
+
+.drink-image::after { content: none; }
+
+.drinks-grid .drink-item:nth-child(1) .drink-image::after { animation-delay: 260ms; }
+.drinks-grid .drink-item:nth-child(2) .drink-image::after { animation-delay: 340ms; }
+.drinks-grid .drink-item:nth-child(3) .drink-image::after { animation-delay: 420ms; }
+.drinks-grid .drink-item:nth-child(4) .drink-image::after { animation-delay: 500ms; }
+.drinks-grid .drink-item:nth-child(5) .drink-image::after { animation-delay: 580ms; }
+.drinks-grid .drink-item:nth-child(6) .drink-image::after { animation-delay: 660ms; }
+
+@keyframes drinkProCardIn {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translateY(12px) scale(0.985) rotateX(6deg);
+  }
+  60% {
+    opacity: 1;
+    transform: perspective(1000px) translateY(-3px) scale(1.01) rotateX(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) translateY(0) scale(1) rotateX(0);
+  }
+}
+
+@keyframes drinkProImgIn {
+  0% {
+    transform: translateZ(0) scale(0.98) rotateX(1.5deg);
+  }
+  60% {
+    transform: translateZ(0) scale(1.015) rotateX(0.5deg);
+  }
+  100% {
+    transform: translateZ(0) scale(1) rotateX(0);
+  }
+}
+
+@keyframes drinkShadowBloom {
+  0% { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18), 0 0 0 rgba(78, 205, 196, 0); }
+  60% { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28), 0 6px 20px rgba(78, 205, 196, 0.16); }
+  100% { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24), 0 4px 14px rgba(78, 205, 196, 0.12); }
+}
+
+@keyframes drinkHighlightSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%) rotate(8deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateX(15%) rotate(8deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%) rotate(8deg);
+  }
+}
+
+/* --- Pro Entrance for Pizzas --- */
+.pizzas-grid .pizza-card {
+  opacity: 0;
+  transform: perspective(1000px) translateY(14px) scale(0.985) rotateX(3deg);
+  will-change: transform, opacity, box-shadow;
+  animation: pizzaProCardIn 720ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+             pizzaShadowBloom 900ms ease-out forwards;
+}
+
+.pizzas-grid .pizza-card:nth-child(1) { animation-delay: 80ms, 80ms; }
+.pizzas-grid .pizza-card:nth-child(2) { animation-delay: 160ms, 160ms; }
+.pizzas-grid .pizza-card:nth-child(3) { animation-delay: 240ms, 240ms; }
+.pizzas-grid .pizza-card:nth-child(4) { animation-delay: 320ms, 320ms; }
+.pizzas-grid .pizza-card:nth-child(5) { animation-delay: 400ms, 400ms; }
+.pizzas-grid .pizza-card:nth-child(6) { animation-delay: 480ms, 480ms; }
+.pizzas-grid .pizza-card:nth-child(7) { animation-delay: 560ms, 560ms; }
+.pizzas-grid .pizza-card:nth-child(8) { animation-delay: 640ms, 640ms; }
+.pizzas-grid .pizza-card:nth-child(9) { animation-delay: 720ms, 720ms; }
+
+.pizzas-grid .pizza-card .pizza-image {
+  position: relative;
+}
+
+.pizzas-grid .pizza-card .pizza-image img {
+  transform: translateZ(0) scale(0.985) rotateX(0.6deg);
+  will-change: transform;
+  animation: pizzaProImgIn 760ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.pizzas-grid .pizza-card:nth-child(1) .pizza-image img { animation-delay: 140ms; }
+.pizzas-grid .pizza-card:nth-child(2) .pizza-image img { animation-delay: 220ms; }
+.pizzas-grid .pizza-card:nth-child(3) .pizza-image img { animation-delay: 300ms; }
+.pizzas-grid .pizza-card:nth-child(4) .pizza-image img { animation-delay: 380ms; }
+.pizzas-grid .pizza-card:nth-child(5) .pizza-image img { animation-delay: 460ms; }
+.pizzas-grid .pizza-card:nth-child(6) .pizza-image img { animation-delay: 540ms; }
+.pizzas-grid .pizza-card:nth-child(7) .pizza-image img { animation-delay: 620ms; }
+.pizzas-grid .pizza-card:nth-child(8) .pizza-image img { animation-delay: 700ms; }
+.pizzas-grid .pizza-card:nth-child(9) .pizza-image img { animation-delay: 780ms; }
+
+.pizzas-grid .pizza-card .pizza-image::after { content: none; }
+
+.pizzas-grid .pizza-card:nth-child(1) .pizza-image::after { animation-delay: 280ms; }
+.pizzas-grid .pizza-card:nth-child(2) .pizza-image::after { animation-delay: 360ms; }
+.pizzas-grid .pizza-card:nth-child(3) .pizza-image::after { animation-delay: 440ms; }
+.pizzas-grid .pizza-card:nth-child(4) .pizza-image::after { animation-delay: 520ms; }
+.pizzas-grid .pizza-card:nth-child(5) .pizza-image::after { animation-delay: 600ms; }
+.pizzas-grid .pizza-card:nth-child(6) .pizza-image::after { animation-delay: 680ms; }
+.pizzas-grid .pizza-card:nth-child(7) .pizza-image::after { animation-delay: 760ms; }
+.pizzas-grid .pizza-card:nth-child(8) .pizza-image::after { animation-delay: 840ms; }
+.pizzas-grid .pizza-card:nth-child(9) .pizza-image::after { animation-delay: 920ms; }
+
+@keyframes pizzaProCardIn {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translateY(14px) scale(0.985) rotateX(4deg);
+  }
+  60% {
+    opacity: 1;
+    transform: perspective(1000px) translateY(-3px) scale(1.01) rotateX(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) translateY(0) scale(1) rotateX(0);
+  }
+}
+
+@keyframes pizzaProImgIn {
+  0% {
+    transform: translateZ(0) scale(0.985) rotateX(0.8deg);
+  }
+  60% {
+    transform: translateZ(0) scale(1.012) rotateX(0.3deg);
+  }
+  100% {
+    transform: translateZ(0) scale(1) rotateX(0);
+  }
+}
+
+@keyframes pizzaShadowBloom {
+  0% { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18), 0 0 0 rgba(230, 57, 70, 0); }
+  60% { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(230, 57, 70, 0.18); }
+  100% { box-shadow: 0 14px 32px rgba(0, 0, 0, 0.26), 0 6px 16px rgba(230, 57, 70, 0.12); }
+}
+
+@keyframes pizzaHighlightSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%) rotate(8deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.85;
+    transform: translateX(15%) rotate(8deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%) rotate(8deg);
+  }
+}
+
+/* Reduce motion for pizzas as well */
+@media (prefers-reduced-motion: reduce) {
+  .pizzas-grid .pizza-card,
+  .pizzas-grid .pizza-card .pizza-image img,
+  .pizzas-grid .pizza-card .pizza-image::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* --- Soft Fade Entrance (Overrides for a professional/elegant look) --- */
+.drinks-grid .drink-item,
+.pizzas-grid .pizza-card,
+.desserts-grid .dessert-item {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: softFadeInUp 520ms ease-out forwards;
+}
+
+/* Stagger timings */
+.drinks-grid .drink-item:nth-child(1) { animation-delay: 40ms; }
+.drinks-grid .drink-item:nth-child(2) { animation-delay: 120ms; }
+.drinks-grid .drink-item:nth-child(3) { animation-delay: 200ms; }
+.drinks-grid .drink-item:nth-child(4) { animation-delay: 280ms; }
+.drinks-grid .drink-item:nth-child(5) { animation-delay: 360ms; }
+.drinks-grid .drink-item:nth-child(6) { animation-delay: 440ms; }
+
+.pizzas-grid .pizza-card:nth-child(1) { animation-delay: 60ms; }
+.pizzas-grid .pizza-card:nth-child(2) { animation-delay: 140ms; }
+.pizzas-grid .pizza-card:nth-child(3) { animation-delay: 220ms; }
+.pizzas-grid .pizza-card:nth-child(4) { animation-delay: 300ms; }
+.pizzas-grid .pizza-card:nth-child(5) { animation-delay: 380ms; }
+.pizzas-grid .pizza-card:nth-child(6) { animation-delay: 460ms; }
+
+/* Images fade softly as well */
+.drinks-grid .drink-item .drink-image img,
+.pizzas-grid .pizza-card .pizza-image img {
+  opacity: 0;
+  transform: scale(0.995);
+  animation: softFadeIn 620ms ease-out forwards;
+}
+
+.drinks-grid .drink-item:nth-child(1) .drink-image img { animation-delay: 120ms; }
+.drinks-grid .drink-item:nth-child(2) .drink-image img { animation-delay: 200ms; }
+.drinks-grid .drink-item:nth-child(3) .drink-image img { animation-delay: 280ms; }
+.drinks-grid .drink-item:nth-child(4) .drink-image img { animation-delay: 360ms; }
+.drinks-grid .drink-item:nth-child(5) .drink-image img { animation-delay: 440ms; }
+.drinks-grid .drink-item:nth-child(6) .drink-image img { animation-delay: 520ms; }
+
+.pizzas-grid .pizza-card:nth-child(1) .pizza-image img { animation-delay: 140ms; }
+.pizzas-grid .pizza-card:nth-child(2) .pizza-image img { animation-delay: 220ms; }
+.pizzas-grid .pizza-card:nth-child(3) .pizza-image img { animation-delay: 300ms; }
+.pizzas-grid .pizza-card:nth-child(4) .pizza-image img { animation-delay: 380ms; }
+.pizzas-grid .pizza-card:nth-child(5) .pizza-image img { animation-delay: 460ms; }
+.pizzas-grid .pizza-card:nth-child(6) .pizza-image img { animation-delay: 540ms; }
+
+/* Disable previous highlight sweep effects */
+.drinks-grid .drink-item .drink-image::after,
+.pizzas-grid .pizza-card .pizza-image::after {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+@keyframes softFadeInUp {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes softFadeIn {
+  0% { opacity: 0; transform: scale(0.995); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Reduce motion for the soft fade as well */
+@media (prefers-reduced-motion: reduce) {
+  .drinks-grid .drink-item,
+  .pizzas-grid .pizza-card,
+  .drinks-grid .drink-item .drink-image img,
+  .pizzas-grid .pizza-card .pizza-image img {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+
+/* Animación de brillo pulsante para el contador del carrito */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255,68,68,0.4), 0 2px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(255,68,68,0.6), 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+    transform: scale(1.05);
+  }
+}
+
+/* --- Frame + Backlight (light behind edges) --- */
+.drinks-grid .drink-item,
+.pizzas-grid .pizza-card,
+.desserts-grid .dessert-item {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Pizzas: red glow frame with subtle light rim */
+.pizzas-grid .pizza-card,
+.desserts-grid .dessert-item {
+  border: 1px solid rgba(0,0,0,0.28);
+  background: rgba(33,33,33,0.92);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+}
+
+.pizzas-grid .pizza-card::before { content: none; }
+
+.pizzas-grid .pizza-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.08),
+    inset 0 0 22px rgba(255,255,255,0.06);
+}
+
+/* Bebidas: teal glow frame with subtle light rim */
+.drinks-grid .drink-item {
+  border: 1px solid rgba(0,0,0,0.28);
+  background: rgba(33,33,33,0.92);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+}
+
+/* Text contrast on brown cards */
+.pizzas-grid .pizza-card .pizza-info h3,
+.pizzas-grid .pizza-card .pizza-info p,
+.desserts-grid .dessert-item h3,
+.desserts-grid .dessert-item p { color: #ffffff; }
+
+.drinks-grid .drink-item h3,
+.drinks-grid .drink-item p { color: #ffffff; }
+
+.drinks-grid .drink-item::before { content: none; }
+
+.drinks-grid .drink-item::after { content: none; }
+
+@media (max-width: 1024px) {
+  .contenido-principal {
+    margin-left: 220px;
+  }
+  
+  .page-content {
+    padding: 25px;
+  }
+  
+  .page-content h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contenido-principal {
+    margin-left: 0;
+    margin-top: 70px;
+  }
+  
+  .page-content {
+    padding: 20px;
+  }
+  
+  .page-content h1 {
+    font-size: 2rem;
+  }
+  
+  .page-content p {
+    font-size: 1.1rem;
+  }
+  
+  .pizza-grid,
+  .drinks-grid,
+  .desserts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .pizza-item,
+  .drink-item,
+  .dessert-item {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenido-principal {
+    margin-top: 60px;
+  }
+  
+  .page-content {
+    padding: 15px;
+  }
+  
+  .page-content h1 {
+    font-size: 1.75rem;
+  }
+  
+  .page-content p {
+    font-size: 1rem;
+  }
+  
+  .pizza-item,
+  .drink-item,
+  .dessert-item {
+    padding: 16px;
+  }
+  
+  .pizza-item h3,
+  .drink-item h3,
+  .dessert-item h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .page-content {
+    padding: 10px;
+  }
+  
+  .page-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .pizza-item,
+  .drink-item,
+  .dessert-item {
+    padding: 12px;
+  }
+}
+
+/* --- Pizza Corner Entrances (base) --- */
+.pizzas-grid .pizza-card {
+  opacity: 0;
+}
+
+.pizzas-grid .pizza-card:nth-child(1) {
+  animation: pizzaInFromTL 780ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 60ms;
+}
+
+.pizzas-grid .pizza-card:nth-child(2) {
+  animation: pizzaInFromTR 800ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 140ms;
+}
+
+.pizzas-grid .pizza-card:nth-child(3) {
+  animation: pizzaInFromBR 820ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 220ms;
+}
+
+@keyframes pizzaInFromTL {
+  0% { opacity: 0; transform: translate(-120%, -120%) scale(0.92) rotate(-3deg); }
+  60% { opacity: 1; transform: translate(8px, -6px) scale(1.02) rotate(0.4deg); }
+  100% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0); }
+}
+
+@keyframes pizzaInFromTR {
+  0% { opacity: 0; transform: translate(120%, -120%) scale(0.92) rotate(3deg); }
+  60% { opacity: 1; transform: translate(-8px, -6px) scale(1.02) rotate(-0.4deg); }
+  100% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0); }
+}
+
+@keyframes pizzaInFromBR {
+  0% { opacity: 0; transform: translate(120%, 120%) scale(0.92); }
+  60% { opacity: 1; transform: translate(-8px, 6px) scale(1.02); }
+  100% { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+
+/* Disable for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pizzas-grid .pizza-card { animation: none !important; opacity: 1; transform: none; }
+}
+
+/* --- Responsive enhancements to avoid crowding and force wrapping where needed --- */
+
+/* Let the main product grids auto-fit and wrap naturally before mobile breakpoints */
+.pizzas-grid,
+.drinks-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Ensure flex rows can wrap instead of overflowing */
+.action-row,
+.checkout-summary,
+.order-row,
+.cart-total,
+.cart-actions,
+.checkout-actions,
+.pizza-details {
+  flex-wrap: wrap;
+}
+
+/* Prevent flex/grid children from overflowing their containers */
+.menu-item-content,
+.cart-row > *,
+.checkout-summary > *,
+.order-row > * {
+  min-width: 0;
+}
+
+/* Allow long text to break to next line in common content areas */
+.pizza-info p,
+.drink-item p,
+.dessert-item p,
+.menu-text-content,
+.order-row,
+.checkout-summary {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Form split rows should reduce columns on small screens */
+@media (max-width: 768px) {
+  .form-row-split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-row-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cart rows: reduce columns and stack on small screens to prevent crowding */
+@media (max-width: 768px) {
+  .cart-row {
+    grid-template-columns: 1fr 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .cart-item-price {
+    text-align: left;
+  }
+}
+
+/* --- Fix content offset to match side menu width on medium screens --- */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .contenido-principal {
+    margin-left: 280px; /* keep aligned with .menu-derecho width */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .contenido-principal {
+    margin-left: 280px; /* keep aligned with .menu-derecho width */
+  }
+}
+
+/* --- Stabilize product grid columns to avoid 1↔2 flipping at certain widths --- */
+.pizzas-grid,
+.drinks-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .pizzas-grid,
+  .drinks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Compact cards in 2-column layout to reduce height */
+  .pizza-image { height: 110px; }
+  .drink-image { height: 110px; }
+  .pizza-info { padding: 14px; }
+  .pizza-info p,
+  .drink-item p,
+  .dessert-item p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .btn-order { padding: 10px 16px; font-size: 0.9rem; }
+  .qty-control { margin-bottom: 12px; }
+}
+
+@media (max-width: 768px) {
+  .pizzas-grid,
+  .drinks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .pizzas-grid,
+  .drinks-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reducir y centrar tarjetas en móviles pequeños */
+@media (max-width: 480px) {
+  .pizzas-grid .pizza-card,
+  .drinks-grid .drink-item,
+  .desserts-grid .dessert-item {
+    width: 92%;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Ensure content uses full width when menu collapses to hamburger */
+@media (max-width: 768px) {
+  .contenido-principal {
+    margin-left: 0;
+  }
+}
+
+/* --- Stronger black shadow for product cards --- */
+.pizzas-grid .pizza-card,
+.drinks-grid .drink-item,
+.desserts-grid .dessert-item {
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45) !important;
+}
+
+.pizzas-grid .pizza-card:hover,
+.drinks-grid .drink-item:hover,
+.desserts-grid .dessert-item:hover {
+  box-shadow: 0 22px 66px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Force solid background for drink cards (no transparency) */
+.drinks-grid .drink-item {
+  background: #222222 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.theme-light .drinks-grid .drink-item {
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+}
+body.theme-light .drinks-grid .drink-item h3,
+body.theme-light .drinks-grid .drink-item p {
+  color: #2b2b2b !important;
+}
