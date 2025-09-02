@@ -241,7 +241,7 @@ function Bebidas() {
     { id: 'cola', name: 'Cola', title: 'Cola', description: 'Clásica y refrescante', price: 2.5, imageSrc: '/img-Bebidas/img1.png', imageAlt: 'Bebida cola' },
     { id: 'agua', name: 'Agua', title: 'Agua', description: 'Agua purificada sin gas', price: 1.5, imageSrc: '/img-Bebidas/agua.png', imageAlt: 'Agua' },
     { id: 'te_verde', name: 'Té Verde', title: 'Té Verde', description: 'Té verde natural y refrescante', price: 2.0, imageSrc: '/img-Bebidas/te_verde.png', imageAlt: 'Té Verde' },
-    { id: 'logo', name: 'Bebida de la casa', title: 'Especial de la casa', description: 'Sabor exclusivo de la casa', price: 2.8, imageSrc: '/img-Bebidas/logo2.png', imageAlt: 'Especial de la casa' }
+    { id: 'especial', name: 'Bebida de la casa', title: 'Especial de la casa', description: 'Sabor exclusivo de la casa', price: 2.8, imageSrc: '/img-Bebidas/img1.png', imageAlt: 'Especial de la casa' }
   ];
   return (
     <div className="page-content">
