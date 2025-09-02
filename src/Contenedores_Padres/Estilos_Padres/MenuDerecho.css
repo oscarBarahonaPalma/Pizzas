@@ -396,12 +396,14 @@ body.theme-light .menu-footer {
 @media (max-width: 768px) {
   .hamburger-btn {
     display: flex !important;
-    top: 15px !important;
+    top: 10px !important;
     left: 12px !important;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 12px;
   }
+  .hamburger-inner { gap: 3px; }
+  .hamburger-line { width: 20px; }
   
   .close-btn {
     display: flex;
@@ -428,7 +430,11 @@ body.theme-light .menu-footer {
   .hamburger-btn {
     top: 12px !important;
     left: 12px !important;
+    width: 36px;
+    height: 36px;
   }
+  .hamburger-inner { gap: 3px; }
+  .hamburger-line { width: 18px; }
 
   .menu-derecho {
     width: 100%;
