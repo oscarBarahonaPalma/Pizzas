@@ -47,7 +47,8 @@ const UserMenu = () => {
           overflow: 'hidden',
           padding: '0',
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-          flexShrink: 0
+          flexShrink: 0,
+          marginTop: '-8px'
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'scale(1.1)';
