@@ -7,9 +7,7 @@ const UserMenu = () => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      const mobile = window.innerWidth <= 768;
-      console.log('Screen size check - width:', window.innerWidth, 'isMobile:', mobile);
-      setIsMobile(mobile);
+      setIsMobile(window.innerWidth <= 768);
     };
     
     checkScreenSize();
@@ -38,7 +36,6 @@ const UserMenu = () => {
   };
 
   const toggleMenu = () => {
-    console.log('Toggle clicked - isOpen:', isOpen, 'isMobile:', isMobile);
     setIsOpen(!isOpen);
   };
 
@@ -108,9 +105,9 @@ const UserMenu = () => {
       {isOpen && (
         <div 
           style={{
-            position: 'absolute',
-            top: '50px',
-            right: '0',
+            position: isMobile ? 'fixed' : 'absolute',
+            top: isMobile ? '70px' : '50px',
+            right: isMobile ? '10px' : '0',
             backgroundColor: 'white',
             borderRadius: '12px',
             boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
@@ -121,7 +118,6 @@ const UserMenu = () => {
             border: '1px solid rgba(0, 0, 0, 0.1)'
           }}
         >
-          {console.log('Menu rendering - isOpen:', isOpen, 'isMobile:', isMobile)}
           <div style={{
             display: 'flex',
             alignItems: 'center',
