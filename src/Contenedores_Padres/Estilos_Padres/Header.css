@@ -15,29 +15,7 @@
   padding: 0 2rem;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
 
-.header-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-}
-
-.header-logo:hover {
-  transform: scale(1.05);
-}
-
-.brand-logo {
-  height: 44px;
-  width: auto;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-}
 
 .header-center {
   position: absolute;
@@ -258,9 +236,7 @@
     font-size: 0.8rem;
   }
   
-  .brand-logo {
-    height: 35px;
-  }
+
 }
 
 @media (max-width: 480px) {
@@ -301,20 +277,5 @@
     white-space: nowrap; /* Evitar que se rompan las palabras */
   }
   
-  .brand-logo {
-    height: 30px;
-  }
-  
-  /* Ocultar logo en móviles muy pequeños para dar más espacio */
-  .header-left {
-    display: none !important;
-  }
-  
-  .header-logo {
-    display: none !important;
-  }
-  
-  .brand-logo {
-    display: none !important;
-  }
+
 }

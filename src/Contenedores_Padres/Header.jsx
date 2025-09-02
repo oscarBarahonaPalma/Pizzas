@@ -24,11 +24,7 @@ function Header() {
 
   return (
     <div className='Header'>
-      <div className="header-left">
-        <NavLink to="/" className="header-logo">
-          <img src="/img-Bebidas/logo2.png" alt="Logo" className="brand-logo" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img-Bebidas/logo.png'; }} />
-        </NavLink>
-      </div>
+
       
       {(isPizzas || isBebidas || isPostres || isPedidos) && (
         <div className="header-center">
