@@ -1546,7 +1546,7 @@ body.theme-light .btn-order,
 @media (max-width: 768px) {
   .contenido-principal {
     margin-left: 0;
-    margin-top: 60px;
+    margin-top: 45px;
   }
   
   .page-content {
@@ -1577,7 +1577,7 @@ body.theme-light .btn-order,
 
 @media (max-width: 480px) {
   .contenido-principal {
-    margin-top: 50px;
+    margin-top: 35px;
   }
   
   .page-content {
@@ -1613,6 +1613,24 @@ body.theme-light .btn-order,
   .page-content h1 {
     font-size: 1.5rem;
   }
+}
+
+/* Subir más las tarjetas en pantallas pequeñas */
+@media (max-width: 768px) {
+  .pizzas-grid,
+  .drinks-grid,
+  .desserts-grid {
+    margin-top: -35px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pizzas-grid,
+  .drinks-grid,
+  .desserts-grid {
+    margin-top: -40px !important;
+  }
+}
   
   .pizza-item,
   .drink-item,
