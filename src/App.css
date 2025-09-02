@@ -1007,6 +1007,29 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   font-size: 1rem;
 }
 
+.pizza-card,
+.drink-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.pizzas-grid .pizza-card .pizza-image,
+.drinks-grid .drink-item .drink-image {
+  flex: 0 0 120px;
+  height: 120px;
+}
+
+/* Igualar alturas de tarjetas entre Pizzas y Bebidas en escritorio */
+.pizzas-grid .pizza-card,
+.drinks-grid .drink-item {
+  min-height: 320px;
+}
+
+.pizza-info .action-row,
+.drinks-grid .drink-item .action-row {
+  margin-top: auto;
+}
+
 .pizza-details {
   display: flex;
   justify-content: space-between;
