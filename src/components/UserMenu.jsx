@@ -30,7 +30,7 @@ const UserMenu = () => {
   if (!userInfo) return null;
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', marginTop: '8px' }}>
       <button 
         onClick={toggleMenu} 
         style={{
