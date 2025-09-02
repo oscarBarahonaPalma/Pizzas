@@ -38,7 +38,7 @@ const MenuDerecho = () => {
       id: 'pizzas',
       label: 'Pizzas',
       icon: '🍕',
-      iconSrc: '/ICONOS/pizzas.png?v=2',
+      iconSrc: '/ICONOS/pizzas.png?v=3',
       description: 'Nuestras especialidades',
       color: '#ff6b6b'
     },
@@ -46,7 +46,7 @@ const MenuDerecho = () => {
       id: 'bebidas',
       label: 'Bebidas',
       icon: '🥤',
-      iconSrc: '/ICONOS/soda.png?v=2',
+      iconSrc: '/ICONOS/soda.png?v=3',
       description: 'Refrescos y más',
       color: '#4ecdc4'
     },
@@ -54,7 +54,7 @@ const MenuDerecho = () => {
       id: 'postres',
       label: 'Promociones y paquetes',
       icon: '🏷️',
-      iconSrc: '/ICONOS/descuento.png?v=2',
+      iconSrc: '/ICONOS/descuento.png?v=3',
       description: 'Promos y combos',
       color: '#ffe66d'
     },
