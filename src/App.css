@@ -402,12 +402,27 @@ body.theme-light .pizzas-subtitle { color: #333; }
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
 }
 
 .drinks-grid .drink-item::before { content: none; }
 
-.drinks-grid .drink-item h3 { color: #ffffff; }
-.drinks-grid .drink-item p { color: rgba(255,255,255,0.85); }
+.drinks-grid .drink-item h3 { 
+  color: #ffffff; 
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+.drinks-grid .drink-item p { 
+  color: rgba(255,255,255,0.85); 
+  flex-grow: 1;
+  margin-bottom: 16px;
+}
+.drinks-grid .drink-item .action-row {
+  margin-top: auto;
+  flex-shrink: 0;
+}
 
 /* Stagger (escalonado) */
 .drinks-grid .drink-item:nth-child(1) { animation-delay: 60ms; }
@@ -867,6 +882,22 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   .dessert-item {
     padding: 20px;
   }
+  
+  .drinks-grid .drink-item {
+    min-height: 300px;
+  }
+}
+
+/* Media query para pantallas medianas - mejor distribución de tarjetas */
+@media (min-width: 481px) and (max-width: 768px) {
+  .drinks-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  
+  .drinks-grid .drink-item {
+    min-height: 320px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -889,6 +920,10 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   .dessert-item h3 {
     font-size: 1.25rem;
   }
+  
+  .drinks-grid .drink-item {
+    min-height: 280px;
+  }
 }
 
 /* Estilos para las tarjetas de pizzas */
@@ -904,7 +939,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 .drinks-grid {
   margin-top: -15px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   max-width: 100%;
 }
@@ -1801,6 +1836,25 @@ body.theme-light .btn-order,
   .dessert-item {
     padding: 12px;
     max-width: 100%;
+  }
+  
+  .drinks-grid .drink-item {
+    min-height: 260px;
+  }
+  
+  .drinks-grid .drink-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  
+  .drinks-grid .drink-item p {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+  
+  .drinks-grid .drink-item .drink-image {
+    height: 80px;
+    margin-bottom: 8px;
   }
 
   .pizza-image,
