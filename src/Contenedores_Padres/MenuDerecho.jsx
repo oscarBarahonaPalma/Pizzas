@@ -174,7 +174,7 @@ const MenuDerecho = () => {
             <div className="info-item">
               <div className="info-icon" aria-hidden="true">
                 {/* Reloj futurista y elegante */}
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#ffe66d' }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#ffe66d' }}>
                   {/* Anillo exterior */}
                   <circle cx="12" cy="12" r="8.2" />
                   {/* Segmentos de anillo para look futurista */}
