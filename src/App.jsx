@@ -9,19 +9,19 @@ import MenuDerecho from './Contenedores_Padres/MenuDerecho';
 const PIZZA_ICON = '/ICONOS/pizzas.png';
 const DRINK_ICON = '/ICONOS/soda.png';
 const DISCOUNT_ICON = '/ICONOS/descuento.png';
-// Usar imágenes desde la carpeta "ICONOS 3" para los íconos que caen
+// Usar imágenes desde la carpeta "ICONOS3" para los íconos que caen
 const FALLING_ICONS = [
-  '/ICONOS 3/img1.png',
-  '/ICONOS 3/img2.png',
-  '/ICONOS 3/img3.png',
-  '/ICONOS 3/img4.png',
-  '/ICONOS 3/img5.png',
-  '/ICONOS 3/img6.png',
-  '/ICONOS 3/img7.png',
-  '/ICONOS 3/img8.png',
-  '/ICONOS 3/img9.png',
-  '/ICONOS 3/img10.png',
-  '/ICONOS 3/img11.png'
+  '/ICONOS3/img1.png',
+  '/ICONOS3/img2.png',
+  '/ICONOS3/img3.png',
+  '/ICONOS3/img4.png',
+  '/ICONOS3/img5.png',
+  '/ICONOS3/img6.png',
+  '/ICONOS3/img7.png',
+  '/ICONOS3/img8.png',
+  '/ICONOS3/img9.png',
+  '/ICONOS3/img10.png',
+  '/ICONOS3/img11.png'
 ];
 
 function PizzaCard({ product }) {

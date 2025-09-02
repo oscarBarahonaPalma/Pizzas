@@ -3,19 +3,19 @@ import { useGoogleLogin } from '@react-oauth/google';
 import * as jwt_decode from 'jwt-decode';
 import '../App.css';
 
-// Usar imágenes desde la carpeta "ICONOS 3" para los íconos que caen
+// Usar imágenes desde la carpeta "ICONOS3" para los íconos que caen
 const FALLING_ICONS = [
-  '/ICONOS 3/img1.png',
-  '/ICONOS 3/img2.png',
-  '/ICONOS 3/img3.png',
-  '/ICONOS 3/img4.png',
-  '/ICONOS 3/img5.png',
-  '/ICONOS 3/img6.png',
-  '/ICONOS 3/img7.png',
-  '/ICONOS 3/img8.png',
-  '/ICONOS 3/img9.png',
-  '/ICONOS 3/img10.png',
-  '/ICONOS 3/img11.png'
+  '/ICONOS3/img1.png',
+  '/ICONOS3/img2.png',
+  '/ICONOS3/img3.png',
+  '/ICONOS3/img4.png',
+  '/ICONOS3/img5.png',
+  '/ICONOS3/img6.png',
+  '/ICONOS3/img7.png',
+  '/ICONOS3/img8.png',
+  '/ICONOS3/img9.png',
+  '/ICONOS3/img10.png',
+  '/ICONOS3/img11.png'
 ];
 
 const LoadingScreen = ({ children }) => {
