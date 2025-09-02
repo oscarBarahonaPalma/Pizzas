@@ -236,6 +236,7 @@
   .Header {
     padding: 0 1rem;
     height: 55px;
+    justify-content: space-between; /* Mantener espacio entre elementos */
   }
   
   .pizzas-title {
@@ -266,7 +267,7 @@
     flex-direction: row;
     padding: 0.5rem 0.8rem;
     height: 50px;
-    justify-content: space-between;
+    justify-content: flex-end; /* Mover botones hacia la derecha */
   }
   
   .header-center {
