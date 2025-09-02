@@ -23,10 +23,7 @@ const UserMenu = () => {
   };
 
   const toggleMenu = () => {
-    console.log('Click en UserMenu - isOpen actual:', isOpen);
-    console.log('Ancho de pantalla:', window.innerWidth);
     setIsOpen(!isOpen);
-    console.log('Nuevo isOpen debería ser:', !isOpen);
   };
 
   if (!userInfo) return null;
@@ -48,7 +45,8 @@ const UserMenu = () => {
           transition: 'all 0.3s ease',
           overflow: 'hidden',
           padding: '0',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+          marginTop: '-4px'
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'scale(1.1)';

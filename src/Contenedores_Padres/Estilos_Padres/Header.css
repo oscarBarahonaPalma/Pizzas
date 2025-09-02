@@ -188,94 +188,201 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .Header {
-    padding: 0 1.5rem;
+    padding: 0 1.2rem;
+    height: 58px;
   }
-  
+
+  .header-center {
+    max-width: calc(100vw - 250px);
+  }
+
   .pizzas-title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+    max-width: 100%;
   }
-  
+
   .pizzas-subtitle {
     font-size: 0.7rem;
+    max-width: 100%;
   }
-  
+
   .header-actions {
-    gap: 1rem;
+    gap: 0.9rem;
   }
-  
+
   .contact-button,
   .cart-button {
-    padding: 0.45rem 0.9rem;
+    padding: 0.45rem 0.85rem;
     font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Mejorar legibilidad del contador del carrito */
+  .cart-button span {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    top: -7px;
+    right: -10px;
   }
 }
 
 @media (max-width: 768px) {
   .Header {
-    padding: 0 1rem;
-    height: 55px;
-    justify-content: flex-end; /* Mover botones hacia la derecha en tablets */
+    padding: 0 0.8rem;
+    height: 60px;
+    justify-content: space-between; /* Mejor distribución en tablets */
     align-items: center;
   }
-  
+
+  .header-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: calc(100vw - 200px); /* Evitar que se salga */
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .pizzas-title {
     font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
-  
+
   .pizzas-subtitle {
     font-size: 0.6rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
-  
+
+  .header-right {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
   .header-actions {
-    gap: 0.8rem;
+    gap: 0.6rem;
   }
-  
+
   .contact-button,
   .cart-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
+    min-width: 0;
+    flex-shrink: 0;
   }
-  
 
 }
 
 @media (max-width: 480px) {
   .Header {
     flex-direction: row;
-    padding: 0.4rem 0.6rem;
-    height: 55px; /* Aumentar altura para que quepan los botones */
-    justify-content: flex-end; /* Mover botones hacia la derecha */
+    padding: 0.3rem 0.5rem;
+    height: 50px; /* Reducir altura para mejor proporción */
+    justify-content: space-between; /* Mejor distribución */
     align-items: center;
-    overflow: hidden; /* Evitar que se salgan los elementos */
+    overflow: hidden;
   }
-  
+
   .header-center {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    display: none; /* Ocultar título en móviles muy pequeños */
+    display: none; /* Ocultar título en móviles pequeños */
   }
-  
-  .pizzas-title {
-    font-size: 1rem;
+
+  .header-right {
+    flex-shrink: 0;
+    margin-left: auto;
   }
-  
-  .pizzas-subtitle {
-    font-size: 0.6rem;
-  }
-  
+
   .header-actions {
-    gap: 0.4rem; /* Reducir gap para que quepan más botones */
-    flex-shrink: 0; /* Evitar que se compriman */
+    gap: 0.3rem; /* Mejor espaciado compacto */
+    flex-shrink: 0;
+    align-items: center;
   }
-  
+
   .contact-button,
   .cart-button {
-    padding: 0.25rem 0.5rem; /* Reducir padding */
-    font-size: 0.65rem; /* Reducir tamaño de fuente */
-    white-space: nowrap; /* Evitar que se rompan las palabras */
+    padding: 0.3rem 0.6rem; /* Padding equilibrado */
+    font-size: 0.7rem; /* Tamaño de fuente legible */
+    white-space: nowrap;
+    min-width: 0;
+    flex-shrink: 0;
+    border-radius: 14px; /* Radio más pequeño */
   }
-  
+
+  /* Ajustar contador del carrito para móviles */
+  .cart-button span {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    top: -6px;
+    right: -8px;
+  }
+
+}
+
+/* Pantallas muy pequeñas (360px y menos) */
+@media (max-width: 360px) {
+  .Header {
+    padding: 0.25rem 0.4rem;
+    height: 45px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-right {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .header-actions {
+    gap: 0.2rem;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  .contact-button,
+  .cart-button {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.65rem;
+    border-radius: 12px;
+    min-width: 0;
+    flex-shrink: 0;
+  }
+
+  /* Ocultar texto en botones muy pequeños, mostrar solo iconos */
+  .contact-button::after,
+  .cart-button::after {
+    content: attr(data-icon);
+    font-size: 1.2em;
+    margin-left: 0.2rem;
+  }
+
+  .contact-button {
+    padding: 0.25rem 0.3rem;
+  }
+
+  .cart-button {
+    padding: 0.25rem 0.3rem;
+  }
+
+  /* Ajustar contador del carrito para pantallas muy pequeñas */
+  .cart-button span {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    top: -5px;
+    right: -6px;
+    border-width: 1px;
+  }
 
 }

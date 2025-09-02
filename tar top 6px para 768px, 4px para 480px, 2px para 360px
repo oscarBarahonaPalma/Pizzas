@@ -1,0 +1,5 @@
+[33m9cf7b59[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mchore/remove-user-menu-logs[m[33m, [m[1;31morigin/chore/remove-user-menu-logs[m[33m)[m feat: Implementar responsividad completa y mejoras de UI
+[33m6cac3b6[m style(UserMenu): nudge profile button 4px up (marginTop -4px) only
+[33m32e93b6[m chore(UserMenu): remove debug console logs only
+[33me023112[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m UserMenu: render dropdown in portal to body to bypass header overflow on mobile
+[33m6380a7e[m Header: align actions to the far right at all breakpoints (flex-end)
