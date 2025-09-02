@@ -963,6 +963,19 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 
 /* Revertido: sin fondo temático extra en Bebidas */
 
+.pizzas-grid,
+.drinks-grid {
+  /* Centrar tarjetas para que no queden angostas visualmente */
+  justify-items: center;
+}
+
+/* Unificar ancho de tarjeta entre Pizzas y Bebidas */
+.pizzas-grid .pizza-card,
+.drinks-grid .drink-item {
+  width: 100%;
+  max-width: 420px;
+}
+
 .pizza-card {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
