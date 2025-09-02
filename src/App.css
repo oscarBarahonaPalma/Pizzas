@@ -1,21 +1,28 @@
 .action-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .action-row .btn-order.inline {
-  width: auto;
-  min-width: 110px;
-  background: #127369;
+  width: 100%;
+  background: linear-gradient(135deg, #127369 0%, #0f5e56 100%);
   color: #ffffff;
   box-shadow: 0 8px 22px rgba(18,115,105,0.35);
-  padding: 10px 14px;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .action-row .btn-order.inline:hover {
-  background: #0f5e56;
+  background: linear-gradient(135deg, #0f5e56 0%, #127369 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(18,115,105,0.45);
 }
 * {
   margin: 0;
@@ -1063,35 +1070,45 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 }
 
 .qty-control {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
+  justify-content: center;
+  gap: 12px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 14px;
-  padding: 8px 12px;
+  border-radius: 16px;
+  padding: 10px 16px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .qty-value {
-  min-width: 20px;
+  min-width: 24px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
   color: #ffffff;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 4px 8px;
 }
 
 .btn-qty {
-  background: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.15);
   color: #ffffff;
-  border: 1px solid rgba(255,255,255,0.35);
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  font-weight: 800;
+  border: 1px solid rgba(255,255,255,0.3);
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-qty:hover {
@@ -1815,13 +1832,19 @@ body.theme-light .btn-order,
   }
 
   .qty-control {
-    gap: 6px;
-    padding: 6px 8px;
+    gap: 8px;
+    padding: 8px 12px;
   }
 
   .btn-qty {
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .qty-value {
+    font-size: 16px;
+    padding: 2px 6px;
   }
 }
 
@@ -1894,14 +1917,19 @@ body.theme-light .btn-order,
   }
 
   .qty-control {
-    gap: 4px;
-    padding: 4px 6px;
+    gap: 6px;
+    padding: 6px 10px;
   }
 
   .btn-qty {
-    width: 20px;
-    height: 20px;
-    font-size: 0.7rem;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+  
+  .qty-value {
+    font-size: 14px;
+    padding: 2px 4px;
   }
 
   /* Ajustar precio badge para pantallas pequeñas */
