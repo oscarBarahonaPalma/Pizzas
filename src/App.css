@@ -185,7 +185,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 2.8rem !important;
+  font-size: 2.2rem !important;
   font-weight: 900 !important;
   text-align: center;
   margin: 0 0 24px 0 !important;
@@ -932,7 +932,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   }
   
   .pedidos-title {
-    font-size: 2.2rem !important;
+    font-size: 1.8rem !important;
   }
   
   .pedidos-title::before,
@@ -980,7 +980,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   }
   
   .pedidos-title {
-    font-size: 1.9rem !important;
+    font-size: 1.6rem !important;
     letter-spacing: 0.5px;
   }
   
@@ -1930,7 +1930,7 @@ body.theme-light .btn-order,
   }
   
   .pedidos-title {
-    font-size: 1.6rem !important;
+    font-size: 1.4rem !important;
     letter-spacing: 0.3px;
   }
 
