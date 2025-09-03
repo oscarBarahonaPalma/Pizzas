@@ -1079,28 +1079,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   border: 1px solid #127369;
 }
 
-/* Ajustes específicos para la tarjeta de Pepperoni */
-.pizzas-grid .pizza-card.pepperoni-card .pizza-image img,
-.pizza-card.pepperoni-card .pizza-image img,
-.pepperoni-img {
-  object-fit: contain;
-  transform: none;
-}
 
-/* En pantallas grandes, aumentar la altura del contenedor para que se vea más grande sin recortarse */
-@media (min-width: 1024px) {
-  .pizzas-grid .pizza-card.pepperoni-card .pizza-image,
-  .pizza-card.pepperoni-card .pizza-image {
-    height: 160px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .pizzas-grid .pizza-card.pepperoni-card .pizza-image,
-  .pizza-card.pepperoni-card .pizza-image {
-    height: 180px;
-  }
-}
 
 /* Promos/Postres usan mismo bloque visual de tarjeta */
 .dessert-image {
@@ -1139,23 +1118,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   transform: scale(1.1);
 }
 
-/* Ajuste específico para pizza de pepperoni en pantallas grandes */
-@media (min-width: 1024px) {
-  .pizza-card .pizza-image img[style*="scale(0.6)"] {
-    object-fit: cover !important;
-    transform: scale(0.55) !important;
-    object-position: center center !important;
-  }
-}
 
-/* Ajuste para pantallas muy grandes */
-@media (min-width: 1440px) {
-  .pizza-card .pizza-image img[style*="scale(0.6)"] {
-    object-fit: cover !important;
-    transform: scale(0.5) !important;
-    object-position: center center !important;
-  }
-}
 
 .pizza-info {
   padding: 16px;
@@ -1670,6 +1633,17 @@ body.theme-light .btn-order,
 .pizzas-grid .pizza-card .pizza-image::after {
   animation: none !important;
   opacity: 0 !important;
+}
+
+/* Ocultar imagen y anular estilos/animaciones para tarjetas marcadas (pepperoni) */
+.pizzas-grid .pizza-card[data-no-image="true"] .pizza-image {
+  display: none !important;
+}
+.pizzas-grid .pizza-card[data-no-image="true"] .pizza-image img {
+  display: none !important;
+  animation: none !important;
+  opacity: 0 !important;
+  transform: none !important;
 }
 
 @keyframes softFadeInUp {
