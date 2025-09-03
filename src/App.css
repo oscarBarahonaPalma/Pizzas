@@ -199,7 +199,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
 }
 .page-title-text {
   margin: 0; padding: 0;
-  font-size: 1.95rem; font-weight: 800; letter-spacing: 0.2px;
+  font-size: 1.2rem; font-weight: 800; letter-spacing: 0.2px;
   color: #ffe66d !important; text-shadow: 0 2px 8px rgba(0,0,0,0.45);
 }
 .page-title-accent {
@@ -227,7 +227,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
 .pizza-item,
 .drink-item,
 .dessert-item {
-  background: #ffffff;
+  background: transparent;
   border-radius: 14px;
   padding: 16px;
   border: 1px solid #f0f0f0;
@@ -284,12 +284,12 @@ body.theme-light .pizzas-subtitle { color: #333; }
 /* Imágenes de bebidas */
 .drink-image {
   width: 100%;
-  height: 120px;
+  height: 150px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #222222;
+  background: transparent;
   border: 1px solid #127369;
   border-radius: 12px;
   margin-bottom: 16px;
@@ -300,7 +300,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
 .drink-image img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: transform 0.3s ease;
   transform: scale(1);
   transform-origin: center center;
@@ -316,7 +316,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
   display: block;
 }
 
-.drink-item:hover .drink-image img { transform: scale(1.1); }
+.drink-item:hover .drink-image img { transform: scale(0.7); }
 
 /* Scoped Fanta fill effect (only for .drink-image.fanta-fill) */
 .drink-image.fanta-fill { position: relative; overflow: hidden; }
@@ -381,7 +381,7 @@ body.theme-light .pizzas-subtitle { color: #333; }
   opacity: 0;
   transform: translateY(12px) scale(0.985);
   animation: drinkCardIn 680ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  background: rgba(33,33,33,0.78);
+  background: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0,0,0,0.28);
@@ -611,6 +611,11 @@ body.theme-light .pizzas-subtitle { color: #333; }
   margin-top: 12px;
   padding-top: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff !important;
+}
+
+.cart-total strong {
+  color: #ffffff !important;
 }
 
 .cart-actions {
@@ -622,103 +627,229 @@ body.theme-light .pizzas-subtitle { color: #333; }
 /* Checkout */
 .checkout-panel {
   margin-top: 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  padding: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.checkout-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+  background-size: 200% 100%;
+  animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .checkout-summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 20px;
+}
+
+.checkout-summary span {
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.checkout-summary strong {
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .payment-grid {
-  margin-top: 14px;
+  margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
 }
 
 .payment-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 12px;
-  padding: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 20px;
   display: flex;
-  gap: 10px;
+  gap: 16px;
   align-items: center;
   cursor: pointer;
   color: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.payment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.payment-card:hover::before {
+  left: 100%;
+}
+
+.payment-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .payment-card.selected {
-  border-color: #2ed573;
-  box-shadow: 0 0 0 2px rgba(46, 213, 115, 0.3) inset;
+  border-color: #4ecdc4;
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.2) 0%, rgba(78, 205, 196, 0.1) 100%);
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.3), 0 8px 25px rgba(78, 205, 196, 0.2);
+  transform: translateY(-1px);
+}
+
+.payment-card.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background: #4ecdc4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 2px 8px rgba(78, 205, 196, 0.4);
 }
 
 .payment-icon {
-  width: 36px;
-  height: 24px;
+  width: 48px;
+  height: 32px;
   object-fit: contain;
+  object-position: center;
+  filter: brightness(1.1) contrast(1.1);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.payment-card:hover .payment-icon {
+  transform: scale(1.05);
+}
+
+.payment-text {
+  flex: 1;
 }
 
 .payment-title {
   font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .payment-sub {
-  color: #b0b0b0;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 
 .checkout-actions {
-  margin-top: 14px;
+  margin-top: 24px;
   display: flex;
   justify-content: flex-end;
 }
 
 .card-form {
-  margin-top: 12px;
+  margin-top: 20px;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .form-row {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .form-row label {
-  font-size: 0.9rem;
-  color: #b0b0b0;
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .form-row input {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   color: #fff;
-  padding: 10px 12px;
-  border-radius: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
   outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.form-row input:focus {
+  border-color: #4ecdc4;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+  transform: translateY(-1px);
+}
+
+.form-row input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
 }
 
 .form-row-split {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
 }
 
 .form-error {
-  margin-top: 6px;
+  margin-top: 8px;
   color: #ff6b6b;
   font-weight: 600;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 8px;
+  text-align: center;
 }
 
 /* Error de cantidad en tarjetas: forzar blanco para mejor contraste */
@@ -929,8 +1060,8 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 /* Revertido: sin fondo temático extra en Bebidas */
 
 .pizza-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+  background: transparent;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
@@ -938,31 +1069,33 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 }
 
 .pizza-card:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: transparent;
   transform: translateY(-10px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .pizza-image {
   width: 100%;
-  height: 120px;
+  height: 140px;
   overflow: hidden;
   position: relative;
-  background: #222222;
+  background: transparent;
   border: 1px solid #127369;
 }
 
 /* Promos/Postres usan mismo bloque visual de tarjeta */
 .dessert-image {
   width: 100%;
-  height: 120px;
+  height: 130px;
   overflow: hidden;
   position: relative;
-  background: #222222;
+  background: transparent;
   border: 1px solid #127369;
+  border-radius: 12px;
 }
 
-.pizza-details .price-badge {
+.pizza-details .price-badge,
+.drink-item .price-badge {
   margin-left: auto;
   background: rgba(255,255,255,0.18);
   color: #ffffff;
@@ -977,16 +1110,26 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   right: auto;
 }
 
+.drink-item .price-badge {
+  margin-left: 0;
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
+}
+
 .pizza-image img {
-  width: 100%;
-  height: 100%;
+  width: 98%;
+  height: 95%;
   object-fit: contain;
   transition: transform 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin: 6px auto 0 auto;
+  display: block;
+  image-rendering: auto;
 }
 
 .pizza-card:hover .pizza-image img {
-  transform: scale(1.1);
+  transform: scale(1.01);
 }
 
 .pizza-info {
@@ -1013,7 +1156,11 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   flex-direction: column;
 }
 
-.pizzas-grid .pizza-card .pizza-image,
+.pizzas-grid .pizza-card .pizza-image {
+  flex: 0 0 140px;
+  height: 140px;
+}
+
 .drinks-grid .drink-item .drink-image {
   flex: 0 0 120px;
   height: 120px;
@@ -1030,11 +1177,97 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   margin-top: auto;
 }
 
-.pizza-details {
+.pizza-details,
+.drink-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+/* Estilos para íconos de bebidas */
+.drink-item h3 img {
+  width: 36px !important;
+  height: 36px !important;
+  transition: transform 0.3s ease;
+  border: none;
+}
+
+.drink-item h3:hover img {
+  transform: scale(1.1);
+}
+
+/* Estilos para imágenes de promociones - un poco más grandes */
+.pizza-card img[src*="/img/promo"] {
+  transform: scale(1.08);
+  transition: transform 0.3s ease;
+}
+
+.pizza-card:hover img[src*="/img/promo"] {
+  transform: scale(1.12);
+}
+
+/* Estilos para botón Paquete en promociones */
+.package-button {
+  display: flex;
+  align-items: center;
+}
+
+.btn-package {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: #ffffff;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: default;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+  min-width: 80px;
+  text-align: center;
+}
+
+.btn-package:hover {
+  background: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.35);
+}
+
+
+
+.size-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-size {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 70px;
+}
+
+.btn-size:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-1px);
+}
+
+.btn-size.active {
+  background: rgba(255,68,68,0.8);
+  border-color: rgba(255,68,68,1);
+  color: #ffffff;
+}
+
+.btn-size.active:hover {
+  background: rgba(255,68,68,0.9);
+  transform: translateY(-1px);
 }
 
 .qty-control {
@@ -1167,9 +1400,32 @@ body.theme-light .btn-order,
   }
   
   .pizza-image {
+    height: 120px;
+  }
+
+  .drink-image,
+  .dessert-image {
     height: 110px;
   }
-  .drink-image { height: 110px; }
+
+  .btn-size {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    min-width: 55px;
+  }
+
+  /* Aumentar tamaño de imágenes en tablet */
+  .pizza-image img {
+    max-width: 98% !important;
+    height: 95% !important;
+    image-rendering: auto !important;
+  }
+
+  .drink-image img,
+  .dessert-image img {
+    max-width: 98% !important;
+    height: 95% !important;
+  }
   
   .pizza-info {
     padding: 20px;
@@ -1204,9 +1460,40 @@ body.theme-light .btn-order,
 
 @media (max-width: 480px) {
   .pizza-image {
-    height: 90px;
+    height: 110px;
   }
-  .drink-image { height: 90px; }
+
+  .drink-image {
+    height: 80px;
+  }
+
+  .dessert-image {
+    height: 100px;
+  }
+
+  /* Aumentar tamaño de imágenes en móviles (excepto bebidas que ya están optimizadas) */
+  .pizza-image img {
+    max-width: 98% !important;
+    height: 95% !important;
+    image-rendering: auto !important;
+  }
+
+  .dessert-image img {
+    max-width: 98% !important;
+    height: 95% !important;
+  }
+
+  /* Bebidas mantienen su tamaño optimizado para móviles */
+  .drink-image img {
+    max-width: 85% !important;
+    height: 75% !important;
+  }
+
+  .btn-size {
+    padding: 3px 6px;
+    font-size: 0.7rem;
+    min-width: 50px;
+  }
   
   .pizzas-grid,
   .drinks-grid {
@@ -1238,8 +1525,8 @@ body.theme-light .btn-order,
   }
   .pizzas-grid .pizza-card .pizza-image,
   .drinks-grid .drink-item .drink-image {
-    flex: 0 0 90px;
-    height: 90px !important;
+    flex: 0 0 auto;
+    height: auto !important;
   }
   .pizza-info .action-row,
   .drinks-grid .drink-item .action-row {
@@ -1565,11 +1852,11 @@ body.theme-light .btn-order,
 .pizzas-grid .pizza-card,
 .desserts-grid .dessert-item {
   border: 1px solid rgba(0,0,0,0.28);
-  background: rgba(33,33,33,0.92);
+  background: transparent;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 12px;
 }
 
 .pizzas-grid .pizza-card::before { content: none; }
@@ -1588,7 +1875,7 @@ body.theme-light .btn-order,
 /* Bebidas: teal glow frame with subtle light rim */
 .drinks-grid .drink-item {
   border: 1px solid rgba(0,0,0,0.28);
-  background: rgba(33,33,33,0.92);
+  background: transparent;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -1687,7 +1974,7 @@ body.theme-light .btn-order,
   .pizza-image,
   .drink-image,
   .dessert-image {
-    height: 140px;
+    height: 100px;
   }
 
   .qty-control {
@@ -1728,10 +2015,26 @@ body.theme-light .btn-order,
     padding: 18px;
   }
 
-  .pizza-image,
+  .pizza-image {
+    height: 125px;
+  }
+
   .drink-image,
   .dessert-image {
-    height: 130px;
+    height: 105px;
+  }
+
+  /* Aumentar tamaño de imágenes en tablet pequeña */
+  .pizza-image img {
+    max-width: 98% !important;
+    height: 95% !important;
+    image-rendering: auto !important;
+  }
+
+  .drink-image img,
+  .dessert-image img {
+    max-width: 98% !important;
+    height: 95% !important;
   }
 
   .btn-order {
@@ -1775,7 +2078,7 @@ body.theme-light .btn-order,
   .pizza-image,
   .drink-image,
   .dessert-image {
-    height: 120px;
+    height: 100px;
   }
 
   .pizza-card h3,
@@ -1826,10 +2129,22 @@ body.theme-light .btn-order,
     max-width: 100%;
   }
 
-  .pizza-image,
-  .drink-image,
+  .pizza-image {
+    height: 95px;
+  }
+
+  .drink-image {
+    height: 75px;
+  }
+
   .dessert-image {
-    height: 100px;
+    height: 85px;
+  }
+
+  /* Reducir aún más las imágenes en móviles muy pequeños */
+  .drink-image img {
+    max-width: 80% !important;
+    height: 70% !important;
   }
 
   .pizza-card h3,
@@ -2029,7 +2344,12 @@ body {
 .page-content,
 .pizzas-grid,
 .drinks-grid,
-.desserts-grid,
+.desserts-grid {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Mantener las imágenes dentro de sus contenedores */
 .pizza-card,
 .drink-item,
 .dessert-item {
@@ -2050,12 +2370,24 @@ body {
 }
 
 /* Mejorar la responsividad de imágenes */
-.pizza-image img,
+.pizza-image img {
+  max-width: 98%;
+  height: 95%;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 6px auto 0 auto;
+  display: block;
+  image-rendering: auto;
+}
+
 .drink-image img,
 .dessert-image img {
-  max-width: 100%;
-  height: auto;
+  max-width: 98%;
+  height: 95%;
   object-fit: contain;
+  border-radius: 10px;
+  margin: 6px auto 0 auto;
+  display: block;
 }
 
 /* Asegurar que el contenido use todo el ancho cuando el menú se colapsa */
@@ -2078,14 +2410,14 @@ body {
   box-shadow: 0 22px 66px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* Force solid background for drink cards (no transparency) */
+/* Remove forced solid background for drink cards */
 .drinks-grid .drink-item {
-  background: #222222 !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background: transparent !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 body.theme-light .drinks-grid .drink-item {
-  background: #ffffff !important;
+  background: transparent !important;
   border: 1px solid #e0e0e0 !important;
 }
 body.theme-light .drinks-grid .drink-item h3,

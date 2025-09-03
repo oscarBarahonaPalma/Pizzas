@@ -6,6 +6,8 @@ import { CartContext, CartProvider } from './context/CartContext';
 import Header from './Contenedores_Padres/Header';
 import MenuDerecho from './Contenedores_Padres/MenuDerecho';
 
+
+
 const PIZZA_ICON = '/iconos/pizzas.png?v=4';
 const DRINK_ICON = '/iconos/soda.png?v=4';
 const DISCOUNT_ICON = '/iconos/descuento.png?v=4';
@@ -28,6 +30,27 @@ function PizzaCard({ product }) {
   const { addItem } = useContext(CartContext);
   const [qty, setQty] = useState(0);
   const [qtyError, setQtyError] = useState('');
+  const [selectedSize, setSelectedSize] = useState('Pequeño'); // Estado para el tamaño seleccionado
+
+  // Función para calcular el precio basado en el tamaño
+  const getPriceBySize = () => {
+    // Para promociones y paquetes, usar precio fijo
+    if (product.size === 'Paquete' || product.size === 'Promo') {
+      return product.price;
+    }
+
+    // Precios especiales para pizzas premium
+    if (product.id === 'camaron' || product.id === 'vegetariana' || product.id === 'suprema') {
+      return selectedSize === 'Pequeño' ? 130 : 180;
+    }
+    // Precios normales para otras pizzas
+    return selectedSize === 'Pequeño' ? 100 : 150;
+  };
+
+  // Función para manejar el cambio de tamaño
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  };
 
   const handleAdd = (e) => {
     if (qty <= 0) {
@@ -35,7 +58,12 @@ function PizzaCard({ product }) {
       return;
     }
     setQtyError('');
-    addItem({ id: product.id, name: product.name, price: product.price }, qty);
+    const price = getPriceBySize();
+    addItem({
+      id: `${product.id}-${selectedSize}`,
+      name: `${product.name} (${selectedSize})`,
+      price: price
+    }, qty);
     setQty(0);
     try {
       const sourceEl = e.currentTarget;
@@ -73,8 +101,27 @@ function PizzaCard({ product }) {
         </h3>
         <p>{product.description}</p>
         <div className="pizza-details">
-          <span className="size">{product.size}</span>
-          <div className="price-badge">${product.price.toFixed(2)}</div>
+          {product.size === 'Paquete' || product.size === 'Promo' ? (
+            <div className="package-button">
+              <button className="btn-package">Paquete</button>
+            </div>
+          ) : (
+            <div className="size-buttons">
+              <button
+                className={`btn-size ${selectedSize === 'Pequeño' ? 'active' : ''}`}
+                onClick={() => handleSizeChange('Pequeño')}
+              >
+                Pequeño
+              </button>
+              <button
+                className={`btn-size ${selectedSize === 'Grande' ? 'active' : ''}`}
+                onClick={() => handleSizeChange('Grande')}
+              >
+                Grande
+              </button>
+            </div>
+          )}
+          <div className="price-badge">${getPriceBySize().toFixed(2)}</div>
         </div>
         <div className="action-row">
           <div className="qty-control">
@@ -98,7 +145,7 @@ function Pizzas() {
     { id: 'especial', name: 'Pizza Especial', title: '⭐ Pizza Especial', description: 'Nuestra pizza especial con ingredientes premium seleccionados', price: 150, size: 'Grande', imageSrc: '/img/img3.png', imageAlt: 'Pizza Especial' },
     { id: 'camaron', name: 'Pizza de Camarón', title: '🦐 Pizza de Camarón', description: 'Camarones frescos con ajo, perejil y queso mozzarella', price: 200, size: 'Mediana', imageSrc: '/img/pizza_camaron.png', imageAlt: 'Pizza de Camarón' },
     { id: 'vegetariana', name: 'Pizza Vegetariana', title: '🥬 Pizza Vegetariana', description: 'Verduras frescas seleccionadas sobre una base suave', price: 150, size: 'Mediana', imageSrc: '/img/vegetariana.png', imageAlt: 'Pizza Vegetariana' },
-    { id: 'suprema', name: 'Pizza Suprema', title: '🍕 Pizza Suprema', description: 'Una combinación completa para los más exigentes', price: 150, size: 'Grande' }
+    { id: 'suprema', name: 'Pizza Tabasqueña', title: '🌶️ Pizza Tabasqueña', description: 'Una combinación completa para los más exigentes', price: 150, size: 'Grande', imageSrc: '/img/Tabasqueña.png', imageAlt: 'Pizza Tabasqueña' }
   ];
   return (
     <div className="page-content">
@@ -115,6 +162,25 @@ function DrinkItem({ product }) {
   const { addItem } = useContext(CartContext);
   const [qty, setQty] = useState(0);
   const [qtyError, setQtyError] = useState('');
+  const [selectedSize, setSelectedSize] = useState(product.id === 'especial' ? 'Grande' : 'Pequeño'); // Estado para el tamaño seleccionado
+
+  // Función para calcular el precio basado en el tamaño
+  const getPriceBySize = () => {
+    // Precio especial para Refresco 2.5 ml
+    if (product.id === 'especial') {
+      return 50; // Precio fijo para refresco grande
+    }
+    // Precios normales para otras bebidas
+    return selectedSize === 'Pequeño' ? 25 : 35;
+  };
+
+  // Función para manejar el cambio de tamaño
+  const handleSizeChange = (size) => {
+    // No permitir cambio de tamaño para Refresco 2.5 ml
+    if (product.id === 'especial') return;
+    setSelectedSize(size);
+  };
+
   const [showVideo, setShowVideo] = useState(!!product.videoSrc);
   const videoRef = useRef(null);
   const containerRef = useRef(null);
@@ -196,7 +262,12 @@ function DrinkItem({ product }) {
       return;
     }
     setQtyError('');
-    addItem({ id: product.id, name: product.name, price: product.price }, qty);
+    const price = getPriceBySize();
+    addItem({
+      id: `${product.id}-${selectedSize}`,
+      name: `${product.name} (${selectedSize})`,
+      price: price
+    }, qty);
     setQty(0);
     try {
       const sourceEl = e.currentTarget;
@@ -214,26 +285,49 @@ function DrinkItem({ product }) {
             loading="lazy"
             decoding="async"
             fetchpriority="low"
-            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img-Bebidas/logo.png'; }}
+            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img-Bebidas/agua.png'; }}
           />
         ) : null}
-        <div className="price-badge">${product.price.toFixed(2)}</div>
       </div>
       <h3>
-        <img 
-          src={DRINK_ICON} 
-          alt="" 
-          style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: 8 }} 
+        <img
+          src={product.iconSrc}
+          alt={product.name}
+          style={{
+            width: '36px',
+            height: '36px',
+            verticalAlign: 'middle',
+            marginRight: '8px',
+            objectFit: 'cover'
+          }}
           onError={(e) => {
             e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'inline';
           }}
         />
-        <span style={{ display: 'none', marginRight: 8 }}>🥤</span>
         {product.title}
       </h3>
+      <div className="drink-details">
+        <div className="size-buttons">
+          {product.id !== 'especial' && (
+            <button
+              className={`btn-size ${selectedSize === 'Pequeño' ? 'active' : ''}`}
+              onClick={() => handleSizeChange('Pequeño')}
+            >
+              Pequeño
+            </button>
+          )}
+          <button
+            className={`btn-size ${selectedSize === 'Grande' ? 'active' : ''}`}
+            onClick={() => handleSizeChange('Grande')}
+            disabled={product.id === 'especial'}
+          >
+            Grande
+          </button>
+        </div>
+        <div className="price-badge">${getPriceBySize().toFixed(2)}</div>
+      </div>
       <p>{product.description}</p>
-      <div className="action-row" style={{ marginTop: 8 }}>
+      <div className="action-row">
         <div className="qty-control">
           <button className="btn-qty minus" onClick={() => { const nv = Math.max(0, qty - 1); setQty(nv); if (nv > 0) setQtyError(''); }}>-</button>
           <span className="qty-value">{qty}</span>
@@ -249,12 +343,12 @@ function DrinkItem({ product }) {
 function Bebidas() {
   // Lista de bebidas disponibles
   const drinks = [
-    { id: 'fanta', name: 'Fanta', title: 'Fanta', description: 'Refresco de naranja bien frío', price: 2.5, imageSrc: '/img-Bebidas/fanta.png', imageAlt: 'Fanta' },
-    { id: 'manzanita', name: 'Manzanita', title: 'Manzanita', description: 'Sabor manzana para todo momento', price: 2.5, imageSrc: '/img-Bebidas/manzanita.png', imageAlt: 'Manzanita' },
-    { id: 'cola', name: 'Cola', title: 'Cola', description: 'Clásica y refrescante', price: 2.5, imageSrc: '/img-Bebidas/img1.png', imageAlt: 'Bebida cola' },
-    { id: 'agua', name: 'Agua', title: 'Agua', description: 'Agua purificada sin gas', price: 1.5, imageSrc: '/img-Bebidas/agua.png', imageAlt: 'Agua' },
-    { id: 'te_verde', name: 'Té Verde', title: 'Té Verde', description: 'Té verde natural y refrescante', price: 2.0, imageSrc: '/img-Bebidas/te_verde.png', imageAlt: 'Té Verde' },
-    { id: 'especial', name: 'Bebida de la casa', title: 'Especial de la casa', description: 'Sabor exclusivo de la casa', price: 2.8, imageSrc: '/img-Bebidas/img1.png', imageAlt: 'Especial de la casa' }
+    { id: 'fanta', name: 'Fanta', title: 'Fanta', description: 'Refresco de naranja bien frío', price: 2.5, imageSrc: '/img-Bebidas/fanta.png', iconSrc: '/Refrescos/Fanta.png', imageAlt: 'Fanta' },
+    { id: 'manzanita', name: 'Manzanita', title: 'Manzanita', description: 'Sabor manzana para todo momento', price: 2.5, imageSrc: '/img-Bebidas/manzanita.png', iconSrc: '/Refrescos/Manzanita.png', imageAlt: 'Manzanita' },
+    { id: 'cola', name: 'Cola', title: 'Cola', description: 'Clásica y refrescante', price: 2.5, imageSrc: '/img-Bebidas/img1.png', iconSrc: '/Refrescos/Coca Cola.png', imageAlt: 'Bebida cola' },
+    { id: 'agua', name: 'Agua', title: 'Agua', description: 'Agua purificada sin gas', price: 1.5, imageSrc: '/img-Bebidas/agua.png', iconSrc: '/Refrescos/Agua.png', imageAlt: 'Agua' },
+    { id: 'te_verde', name: 'Té Verde', title: 'Té Verde', description: 'Té verde natural y refrescante', price: 2.0, imageSrc: '/img-Bebidas/te_verde.png', iconSrc: '/Refrescos/Te Verde.png', imageAlt: 'Té Verde' },
+    { id: 'especial', name: 'Refresco 2.5 ml', title: 'Refresco 2.5 ml', description: 'Refresco refrescante en presentación de 2.5 ml', price: 2.8, imageSrc: '/img-Bebidas/Refresco.png', iconSrc: '/Refrescos/Refresco 2.5ml.png', imageAlt: 'Refresco 2.5 ml' }
   ];
   return (
     <div className="page-content">
@@ -269,12 +363,12 @@ function Bebidas() {
 
 function Postres() {
   const products = [
-    { id: 'promo_2x1', name: '2x1 Pizza Grande', title: '2x1 Pizza Grande', description: 'Llévate 2 pizzas grandes por el precio de 1. Válido de lunes a jueves.', price: 19.99, size: 'Promo', imageSrc: '/img/promo1.png', imageAlt: 'Promo 2x1 Pizza Grande' },
-    { id: 'combo_familiar', name: 'Combo Familiar', title: 'Combo Familiar', description: '2 pizzas medianas + 2 bebidas + 1 postre para compartir.', price: 29.99, size: 'Paquete', imageSrc: '/img/promo2.png', imageAlt: 'Combo Familiar' },
-    { id: 'lunch_express', name: 'Lunch Express', title: 'Lunch Express', description: 'Pizza personal + bebida a un precio especial por tiempo limitado.', price: 8.99, size: 'Paquete', imageSrc: '/img/promo3.png', imageAlt: 'Lunch Express' },
-    { id: 'pizza_bebida', name: 'Pizza + Bebida', title: 'Pizza + Bebida', description: 'Pizza mediana a elección + bebida de 500ml.', price: 11.99, size: 'Paquete' },
-    { id: 'combo_pareja', name: 'Combo Pareja', title: 'Combo Pareja', description: '2 pizzas personales + 2 bebidas. Ideal para compartir.', price: 17.99, size: 'Paquete' },
-    { id: 'mega_fiesta', name: 'Mega Fiesta', title: 'Mega Fiesta', description: '2 pizzas grandes + 4 bebidas + 1 postre grande.', price: 39.99, size: 'Paquete' }
+    { id: 'promo_2x1', name: '2x1 Pizza Grande', title: '2x1 Pizza Grande', description: 'Llévate 2 pizzas grandes por el precio de 1. Válido de lunes a jueves.', price: 180, size: 'Promo', imageSrc: '/img/promo1.png', imageAlt: 'Promo 2x1 Pizza Grande' },
+    { id: 'combo_familiar', name: 'Combo Familiar', title: 'Combo Familiar', description: 'Dos pizzas grandes + una Coca Cola de 2.5 litros.', price: 200, size: 'Paquete', imageSrc: '/img/promo2.png', imageAlt: 'Combo Familiar' },
+    { id: 'lunch_express', name: 'Lunch Express', title: 'Lunch Express', description: 'Una pizza grande, una hamburguesa acompañados de papas a la francesa.', price: 150, size: 'Paquete', imageSrc: '/img/promo3.png', imageAlt: 'Lunch Express' },
+    { id: 'pizza_bebida', name: '2 Pizzas + 2 Refrescos', title: '2 Pizzas + 2 Refrescos', description: '2 pizzas medianas a elección + 2 refrescos de 2.5 litros.', price: 260, size: 'Paquete', imageSrc: '/img/promo4.png', imageAlt: '2 Pizzas + 2 Refrescos' },
+    { id: 'combo_pareja', name: 'Combo Pareja', title: 'Combo Pareja', description: 'Una pizza de peperoni o queso, un refresco de 2.5 litros y una hamburguesa.', price: 180, size: 'Paquete', imageSrc: '/img/promo5.png', imageAlt: 'Combo Pareja' },
+    { id: 'mega_fiesta', name: 'Mega Fiesta', title: 'Mega Fiesta', description: '3 pizzas a elegir + 3 refrescos + 3 hamburguesas.', price: 400, size: 'Paquete', imageSrc: '/img/promo6.png', imageAlt: 'Mega Fiesta' }
   ];
   return (
     <div className="page-content">
@@ -291,7 +385,7 @@ function Pedidos() {
   const { orders } = useContext(CartContext);
   return (
     <div className="page-content">
-      <h1>Mis Pedidos</h1>
+      <h1 className="page-title-text">Mis Pedidos</h1>
       <div className="orders-panel">
         {orders.length === 0 ? (
           <p>No tienes pedidos aún.</p>
@@ -373,8 +467,27 @@ function Checkout() {
   const methods = [
     { id: 'card', label: 'Tarjeta de crédito / débito', iconSrc: '/iconos/img3.svg', desc: 'Visa, MasterCard, Amex' },
     { id: 'paypal', label: 'PayPal', iconSrc: '/iconos/img2.svg', desc: 'Paga con tu cuenta' },
-    { id: 'cash', label: 'Efectivo', iconSrc: '/iconos/img1.svg', desc: 'Pagar al recibir' },
-    { id: 'transfer', label: 'Transferencia', iconSrc: '/iconos/img1.svg', desc: 'SPEI / Bancaria' },
+    { 
+      id: 'cash', 
+      label: 'Efectivo', 
+      iconSrc: null, 
+      iconSvg: (
+        <svg width="48" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="6" width="20" height="12" rx="2" fill="#4CAF50" stroke="#2E7D32" strokeWidth="1.5"/>
+          <circle cx="8" cy="12" r="2" fill="#2E7D32"/>
+          <circle cx="16" cy="12" r="2" fill="#2E7D32"/>
+          <path d="M6 4h12v2H6V4z" fill="#4CAF50"/>
+          <path d="M6 18h12v2H6v-2z" fill="#4CAF50"/>
+        </svg>
+      ), 
+      desc: 'Pagar al recibir' 
+    },
+    { 
+      id: 'transfer', 
+      label: 'Transferencia', 
+      iconSrc: '/iconos/pago-movil.png', 
+      desc: 'SPEI / Bancaria' 
+    },
   ];
 
   const handleConfirm = () => {
@@ -432,7 +545,13 @@ function Checkout() {
               className={`payment-card ${method === m.id ? 'selected' : ''}`}
               onClick={() => setMethod(m.id)}
             >
-              <img className="payment-icon" src={m.iconSrc} alt={m.label} />
+              {m.iconSvg ? (
+                <div className="payment-icon">
+                  {m.iconSvg}
+                </div>
+              ) : (
+                <img className="payment-icon" src={m.iconSrc} alt={m.label} />
+              )}
               <div className="payment-text">
                 <div className="payment-title">{m.label}</div>
                 <div className="payment-sub">{m.desc}</div>

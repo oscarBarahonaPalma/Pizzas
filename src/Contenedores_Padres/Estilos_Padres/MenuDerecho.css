@@ -267,7 +267,7 @@
   font-size: 1.25rem;
   width: 32px;
   height: 32px;
-  background: rgba(255, 255, 255, 0.15);
+  background: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -300,7 +300,7 @@
 .social-link {
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.15);
+  background: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -311,7 +311,7 @@
 }
 
 .social-link:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
 }
 
@@ -557,6 +557,46 @@ body.theme-light .menu-footer {
     z-index: 1002 !important;
   }
 }
+
+/* Pegar Mis Pedidos con Horarios y Contacto sin espacio en móviles */
+@media (max-width: 768px) {
+  .menu-nav {
+    padding-bottom: 0px !important; /* Sin padding inferior */
+  }
+
+  .menu-footer {
+    padding-top: 0px !important; /* Sin padding superior */
+    margin-top: 0px !important; /* Sin margen superior */
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important; /* Línea separadora */
+    position: relative !important; /* Posición relativa */
+    top: -80px !important; /* Mover MUCHO más hacia arriba */
+  }
+
+  .contact-info {
+    margin-bottom: 8px !important; /* Mantener margen inferior */
+  }
+
+  /* Hacer más grande el ícono de WhatsApp en móviles */
+  .social-links a div {
+    width: 40px !important; /* Mismo ancho que altura */
+    height: 40px !important; /* Mismo alto que ancho */
+    border-radius: 50% !important; /* Forzar círculo perfecto */
+    display: flex !important; /* Flexbox para centrado */
+    align-items: center !important; /* Centrado vertical */
+    justify-content: center !important; /* Centrado horizontal */
+    min-width: 40px !important; /* Ancho mínimo */
+    min-height: 40px !important; /* Alto mínimo */
+    max-width: 40px !important; /* Ancho máximo */
+    max-height: 40px !important; /* Alto máximo */
+  }
+
+  .social-links a div svg {
+    width: 22px !important; /* Más grande */
+    height: 22px !important; /* Más grande */
+  }
+}
+
+
 
 @media (max-width: 360px) and (orientation: portrait) {
   .hamburger-btn {
