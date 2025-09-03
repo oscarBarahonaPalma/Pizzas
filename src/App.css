@@ -1079,6 +1079,29 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   border: 1px solid #127369;
 }
 
+/* Ajustes específicos para la tarjeta de Pepperoni */
+.pizzas-grid .pizza-card.pepperoni-card .pizza-image img,
+.pizza-card.pepperoni-card .pizza-image img,
+.pepperoni-img {
+  object-fit: contain;
+  transform: none;
+}
+
+/* En pantallas grandes, aumentar la altura del contenedor para que se vea más grande sin recortarse */
+@media (min-width: 1024px) {
+  .pizzas-grid .pizza-card.pepperoni-card .pizza-image,
+  .pizza-card.pepperoni-card .pizza-image {
+    height: 160px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pizzas-grid .pizza-card.pepperoni-card .pizza-image,
+  .pizza-card.pepperoni-card .pizza-image {
+    height: 180px;
+  }
+}
+
 /* Promos/Postres usan mismo bloque visual de tarjeta */
 .dessert-image {
   width: 100%;

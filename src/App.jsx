@@ -44,7 +44,7 @@ function PizzaCard({ product }) {
   };
 
   return (
-    <div className="pizza-card">
+    <div className={`pizza-card ${product.id === 'pepperoni' ? 'pepperoni-card' : ''}`}>
       <div className="pizza-image">
         {product.imageSrc ? (
           <img
@@ -53,7 +53,7 @@ function PizzaCard({ product }) {
             loading="lazy"
             decoding="async"
             fetchpriority="low"
-            style={product.id === 'pepperoni' ? { objectFit: 'cover', transform: 'scale(0.6)', transformOrigin: 'center center', width: '100%', height: '100%', objectPosition: 'center center' } : undefined}
+            className={product.id === 'pepperoni' ? 'pepperoni-img' : undefined}
           />
         ) : null}
       </div>
