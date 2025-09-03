@@ -1,3 +1,4 @@
+
 .action-row {
   display: flex;
   flex-direction: column;
@@ -1635,16 +1636,7 @@ body.theme-light .btn-order,
   opacity: 0 !important;
 }
 
-/* Ocultar imagen y anular estilos/animaciones para tarjetas marcadas (pepperoni) */
-.pizzas-grid .pizza-card[data-no-image="true"] .pizza-image {
-  display: none !important;
-}
-.pizzas-grid .pizza-card[data-no-image="true"] .pizza-image img {
-  display: none !important;
-  animation: none !important;
-  opacity: 0 !important;
-  transform: none !important;
-}
+
 
 @keyframes softFadeInUp {
   0% { opacity: 0; transform: translateY(10px); }

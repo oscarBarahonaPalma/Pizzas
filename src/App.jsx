@@ -40,14 +40,13 @@ function PizzaCard({ product }) {
     try {
       const sourceEl = e.currentTarget;
       window.dispatchEvent(new CustomEvent('fly-to-cart', { detail: { sourceEl } }));
-    } catch (err) { console.debug(err); }
+    } catch {}
   };
 
   return (
-    <div className="pizza-card" data-no-image={product.id === 'pepperoni'}>
+    <div className="pizza-card">
       <div className="pizza-image">
-        {/* No renderizar la etiqueta <img> para la pizza pepperoni */}
-        {product.imageSrc && product.id !== 'pepperoni' ? (
+        {product.imageSrc ? (
           <img
             src={product.imageSrc}
             alt={product.imageAlt || ''}
@@ -92,6 +91,7 @@ function PizzaCard({ product }) {
 
 function Pizzas() {
   const products = [
+    { id: 'tabasquena', name: 'Pizza De Peperoni', title: '🍕 Pizza De Peperoni', description: 'Deliciosa pizza con pepperoni crujiente y queso mozzarella derretido', price: 170, size: 'Grande', imageSrc: '/img/Pizza_peperoni.png', imageAlt: 'Pizza De Peperoni' },
     { id: 'hawaiana', name: 'Pizza Hawaiana', title: '🍍 Pizza Hawaiana', description: 'Jamón y piña, una combinación perfecta que te sorprenderá', price: 150, size: 'Grande', imageSrc: '/img/Pizza_Hallayana.png', imageAlt: 'Pizza Hawaiana' },
     { id: 'especial', name: 'Pizza Especial', title: '⭐ Pizza Especial', description: 'Nuestra pizza especial con ingredientes premium seleccionados', price: 150, size: 'Grande', imageSrc: '/img/img3.png', imageAlt: 'Pizza Especial' },
     { id: 'camaron', name: 'Pizza de Camarón', title: '🦐 Pizza de Camarón', description: 'Camarones frescos con ajo, perejil y queso mozzarella', price: 200, size: 'Mediana', imageSrc: '/img/pizza_camaron.png', imageAlt: 'Pizza de Camarón' },
@@ -113,7 +113,7 @@ function DrinkItem({ product }) {
   const { addItem } = useContext(CartContext);
   const [qty, setQty] = useState(0);
   const [qtyError, setQtyError] = useState('');
-  const [showVideo, _setShowVideo] = useState(!!product.videoSrc);
+  const [showVideo, setShowVideo] = useState(!!product.videoSrc);
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
@@ -124,23 +124,23 @@ function DrinkItem({ product }) {
     try {
       videoEl.muted = true;
       const p1 = videoEl.play();
-      p1 && p1.catch((err) => { console.debug(err); });
-    } catch (err) { console.debug(err); }
+             p1 && p1.catch(() => {});
+    } catch {}
 
     const onTouchStart = () => {
       try {
         videoEl.muted = true;
         const p = videoEl.play();
-        p && p.catch((err) => { console.debug(err); });
-      } catch (err) { console.debug(err); }
+        p && p.catch(() => {});
+      } catch {}
     };
     const onVisibility = () => {
       if (!document.hidden) {
         try {
           videoEl.muted = true;
           const p = videoEl.play();
-          p && p.catch((err) => { console.debug(err); });
-        } catch (err) { console.debug(err); }
+          p && p.catch(() => {});
+        } catch {}
       }
     };
     document.addEventListener('touchstart', onTouchStart, { once: true });
@@ -167,9 +167,9 @@ function DrinkItem({ product }) {
     if (!el) return;
     if (!showVideo) return;
     if (isInView) {
-      try { el.muted = true; const p = el.play(); p && p.catch((err) => { console.debug(err); }); } catch (err) { console.debug(err); }
+      try { el.muted = true; const p = el.play(); p && p.catch(() => {}); } catch {}
     } else {
-      try { el.pause(); } catch (err) { console.debug(err); }
+      try { el.pause(); } catch {}
     }
   }, [isInView, showVideo]);
 
@@ -182,7 +182,7 @@ function DrinkItem({ product }) {
         if (ev.detail && ev.detail.el !== current) {
           current.pause();
         }
-      } catch (err) { console.debug(err); }
+      } catch {}
     };
     window.addEventListener('exclusive-video-play', handler);
     return () => window.removeEventListener('exclusive-video-play', handler);
@@ -199,7 +199,7 @@ function DrinkItem({ product }) {
     try {
       const sourceEl = e.currentTarget;
       window.dispatchEvent(new CustomEvent('fly-to-cart', { detail: { sourceEl } }));
-    } catch (err) { console.debug(err); }
+    } catch {}
   };
 
   return (
