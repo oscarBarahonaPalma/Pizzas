@@ -90,6 +90,7 @@ function PizzaCard({ product }) {
   );
 }
 
+// Última actualización: Pizza De Peperoni agregada al menú
 function Pizzas() {
   const products = [
     { id: 'pepperoni', name: 'Pizza Pepperoni', title: '🍕 Pizza Pepperoni', description: 'La clásica pizza con pepperoni picante y queso mozzarella derretido', price: 150, size: 'Grande', imageSrc: '/img/Pizza_peperoni.png', imageAlt: 'Pizza Pepperoni' },
