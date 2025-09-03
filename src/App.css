@@ -1119,6 +1119,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 /* Ajuste específico para pizza de pepperoni en pantallas grandes */
 @media (min-width: 1024px) {
   .pizza-card .pizza-image img[style*="scale(0.6)"] {
+    object-fit: cover !important;
     transform: scale(0.55) !important;
     object-position: center center !important;
   }
@@ -1127,6 +1128,7 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
 /* Ajuste para pantallas muy grandes */
 @media (min-width: 1440px) {
   .pizza-card .pizza-image img[style*="scale(0.6)"] {
+    object-fit: cover !important;
     transform: scale(0.5) !important;
     object-position: center center !important;
   }
