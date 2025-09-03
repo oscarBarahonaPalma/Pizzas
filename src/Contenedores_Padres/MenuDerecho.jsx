@@ -205,7 +205,18 @@ const MenuDerecho = () => {
               </div>
             </div>
             <div className="social-links">
-              <a href="https://web.whatsapp.com/send?phone=529984817174&text=Hola%2C%20me%20interesa%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="WhatsApp">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const whatsappUrl = window.innerWidth <= 768
+                    ? "https://wa.me/529984817174?text=Hola%2C%20me%20interesa%20hacer%20un%20pedido"
+                    : "https://web.whatsapp.com/send?phone=529984817174&text=Hola%2C%20me%20interesa%20hacer%20un%20pedido";
+                  window.open(whatsappUrl, '_blank');
+                }}
+                className="social-link"
+                aria-label="WhatsApp"
+              >
                               <div style={{
                 width: '32px',
                 height: '32px',
