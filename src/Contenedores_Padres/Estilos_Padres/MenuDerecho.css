@@ -558,8 +558,27 @@ body.theme-light .menu-footer {
   }
 }
 
-/* Pegar Mis Pedidos con Horarios y Contacto sin espacio en móviles */
-@media (max-width: 768px) {
+/* Tablets y pantallas medianas - Asegurar separación normal */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .menu-nav {
+    padding-bottom: 12px !important; /* Padding normal para separación */
+  }
+
+  .menu-footer {
+    padding-top: 12px !important; /* Padding normal */
+    margin-top: 0 !important; /* Sin margen extra */
+    position: static !important; /* Posición normal */
+    top: auto !important; /* Reset cualquier top negativo */
+    border-top: 1px solid rgba(255, 255, 255, 0.3) !important; /* Borde normal */
+  }
+
+  .contact-info {
+    margin-bottom: 20px !important; /* Margen normal */
+  }
+}
+
+/* Solo para móviles pequeños - Pegar Mis Pedidos con Horarios y Contacto */
+@media (max-width: 480px) {
   .menu-nav {
     padding-bottom: 0px !important; /* Sin padding inferior */
   }
