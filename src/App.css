@@ -1123,6 +1123,13 @@ body.theme-light .orders-panel .order-status { color: #ffe66d !important; }
   image-rendering: auto;
 }
 
+/* Ajuste específico para las primeras 3 tarjetas de pizza */
+.pizzas-grid .pizza-card:nth-child(1) .pizza-image img,
+.pizzas-grid .pizza-card:nth-child(2) .pizza-image img,
+.pizzas-grid .pizza-card:nth-child(3) .pizza-image img {
+  margin: 12px auto 0 auto;
+}
+
 .pizza-card:hover .pizza-image img {
   transform: scale(1.01);
 }
